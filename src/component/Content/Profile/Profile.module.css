@@ -1,0 +1,26 @@
+.ava {
+    width: 10em;
+    border: solid rgba(156, 156, 156, 0);
+    border-radius: 3em;
+    margin: 6px;
+}
+
+.con {
+    margin: 10px;
+}
+
+.con div {
+    margin: 6px;
+}
+
+.tec {
+    display: flex;
+}
+
+.posts {
+    margin: 10px;
+}
+
+li {
+    list-style-type: none;
+}

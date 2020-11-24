@@ -1,0 +1,11 @@
+.App {
+    display: flex;
+    margin: 0 auto;
+    width: 1280px;
+    align-items: stretch;
+}
+
+.cont {
+    background-color: rgb(96 0 250 / 13%);
+    width: 100%;
+}

@@ -1,0 +1,7 @@
+.li {
+    color: black;
+}
+
+.active {
+    border-bottom: rgba(140, 0, 255, 0.493);
+}

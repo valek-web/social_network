@@ -1,0 +1,11 @@
+.minW {
+    min-width: 300px;
+    border-left: solid rgb(60, 0, 128) 3px;
+    order: 2;
+}
+
+textarea {
+    min-width: 99%;
+    min-height: 65px;
+    resize: none;
+}

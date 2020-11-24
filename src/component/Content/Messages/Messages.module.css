@@ -1,0 +1,11 @@
+.mess {
+    display: inline-flex;
+    align-items: stretch;
+}
+.textMesss {
+    order: 2;
+}
+
+.nameMesss {
+    min-width: 120px;
+}
