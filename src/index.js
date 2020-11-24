@@ -5,7 +5,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
-export let renderAll = (state) => {
+export let renderAll = (states) => {
+  debugger
   ReactDOM.render(
     <React.StrictMode>
       <App state={state}  newPostClick={newPostClick} updatePostText={updatePostText}/>
@@ -13,7 +14,7 @@ export let renderAll = (state) => {
     document.getElementById('root')
   );
 }
-renderNew(renderAll(state))
+renderNew(renderAll())
 renderAll(state)
 
 // If you want your app to work offline and load faster, you can change

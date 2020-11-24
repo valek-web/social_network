@@ -1,5 +1,7 @@
 let renderNewChange = () => {}
- window.ren = renderNewChange;
+
+window.ren = renderNewChange;
+
 let state = {
      profilePage:{
          post:[{ messag: 'New post!', like: 'like: 2' },
@@ -19,6 +21,7 @@ let state = {
  window.state = state;
 
 export let newPostClick = () => {
+   alert(state.profilePage.newPostText)
    let newTextPosts = state.profilePage.newPostText;
    debugger
    let newPosting = {messag: newTextPosts, like: 'Like: 0'};
@@ -28,6 +31,7 @@ export let newPostClick = () => {
 }
 
 export let updatePostText = (newText) => {
+   //alert(renderNewChange(state))
    debugger
    state.profilePage.newPostText = newText;
    renderNewChange(state);
@@ -40,7 +44,7 @@ export let updatePostText = (newText) => {
 // updatePostText("Только вручную2")
 
 export let renderNew = (rend) => {
-   rend = renderNewChange;
+   renderNewChange = rend;
 }
 
  export default state;
