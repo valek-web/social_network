@@ -5,9 +5,7 @@ import ProfileBlok from './ProfileBlok/ProfileBlok';
 import NewPosts from './NewPosts/NewPosts';
 
 const Profile = (props) => {
-  debugger
   let mapPosts = props.postsMap.profilePage.post.map(i => <Posts messag={i.messag} like={i.like}/>);
-  debugger
   return (
     <content className={q.con}>
       <ProfileBlok />

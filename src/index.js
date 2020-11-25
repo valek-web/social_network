@@ -14,8 +14,11 @@ export let renderAll = (states) => {
     document.getElementById('root')
   );
 }
-renderNew(renderAll())
+
 renderAll(state)
+debugger
+renderNew(renderAll)
+debugger
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

@@ -7,7 +7,6 @@ import Profile from './component/Content/Profile/Profile';
 import Menu from './component/Menu/Menu';
 
 function App(props) {
-  debugger
   return (
     <BrowserRouter>
       <div className="App">
