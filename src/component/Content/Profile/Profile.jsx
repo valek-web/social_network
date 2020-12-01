@@ -5,12 +5,12 @@ import ProfileBlok from './ProfileBlok/ProfileBlok';
 import NewPosts from './NewPosts/NewPosts';
 
 const Profile = (props) => {
-  let mapPosts = props.postsMap.profilePage.post.map(i => <Posts messag={i.messag} like={i.like}/>);
+  let mapPosts = props.postsMap.profilePage.post.map(i => <Posts message={i.message} like={i.like} />);
   return (
     <content className={q.con}>
       <ProfileBlok />
-      <NewPosts postsMap={props.postsMap} newPostClick={props.newPostClick} updatePostText={props.updatePostText}/>
-      { mapPosts }
+      <NewPosts postsMap={props.postsMap} dispatchProfile={props.dispatchProfile} />
+      { mapPosts}
     </content>
   )
 }

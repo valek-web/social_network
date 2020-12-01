@@ -6,9 +6,10 @@ import App from './App';
 import stone from './redux/state';
 
 export let renderAll = (states) => {
+  debugger
   ReactDOM.render(
     <React.StrictMode>
-      <App state={states}  newPostClick={stone.newPostClick.bind(stone)} updatePostText={stone.updatePostText.bind(stone)}/>
+      <App state={stone.getState()} dispatchProfile={stone.dispatchProfile.bind(stone)} dispatchMessage={stone.dispatchMessage.bind(stone)}/>
     </React.StrictMode>,
     document.getElementById('root')
   );

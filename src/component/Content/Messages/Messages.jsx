@@ -6,20 +6,19 @@ import NameMessage from './NameMessage/NameMessage'
 
 
 const Messages = (props) => {
-  let mapMessagesName = props.nameMess.messagesPage.map((u) => <NameMessage name={u.name} id={u.id} />)
+  debugger
+  let mapMessagesName = props.nameMessage.messagesPage.userNameMessage.map(u => <NameMessage name={u.name} id={u.id} />)
   return (
-    <BrowserRouter>
-      <div className={q.mess}>
-        <div className={q.textMesss}>
-          <MessagesText/>
-        </div>
-        <div className={q.nameMesss}>
-          {//mapMessagesName
-          mapMessagesName
-          }
-        </div>
+    <div className={q.mess}>
+      <div className={q.textM}>
+        <MessagesText textMessages={props.nameMessage.messagesPage} dispatchMessage={props.dispatchMessage} />
       </div>
-    </BrowserRouter>
+      <div className={q.nameM}>
+        {
+          mapMessagesName
+        }
+      </div>
+    </div>
   )
 }
 

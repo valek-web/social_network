@@ -2,10 +2,10 @@
     display: inline-flex;
     align-items: stretch;
 }
-.textMesss {
+.textM {
     order: 2;
 }
 
-.nameMesss {
+.nameM {
     min-width: 120px;
 }

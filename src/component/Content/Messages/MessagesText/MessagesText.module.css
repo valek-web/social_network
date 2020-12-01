@@ -9,3 +9,9 @@ textarea {
     min-height: 65px;
     resize: none;
 }
+
+.message {
+    margin: 20px;
+    background-color: rgb(169, 128, 207);
+    border-radius: 0.1em;;
+}

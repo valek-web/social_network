@@ -6,6 +6,7 @@
 }
 
 .cont {
+    min-height: 770px;
     background-color: rgb(96 0 250 / 13%);
     width: 100%;
 }
