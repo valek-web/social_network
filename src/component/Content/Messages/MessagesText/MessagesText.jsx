@@ -6,22 +6,28 @@ const MessagesText = (props) => {
 
   let inputPost = React.createRef();
   debugger
-let mapMessage = props.textMessages.messageText.map(w => <p className={q.message}>{w}</p>)
+  let mapMessage = props.textMessages.messageText.map(w => <p className={q.message}>{w}</p>)
 
   let newMessagesClick = () => {
-    props.dispatchMessage(actionNewMessagesClick)
+    props.dispatch(actionNewMessagesClick)
   }
 
   let updateText = () => {
     let text = inputPost.current.value;
-    props.dispatchMessage(actionUpdateMessage(text))
+    props.dispatch(actionUpdateMessage(text))
   }
 
   return (
-    <div className={q.minW}>
+    <div className={q.textMessage}>
+      <div>
       {mapMessage}
-      <textarea ref={inputPost} onChange={updateText} value={props.textMessages.textMessage} />
+      </div>
+      <div className={q.textarea}>
+      <textarea ref={inputPost} onChange={updateText}
+        value={props.textMessages.textMessage}
+        placeholder='New messages!' />
       <button onClick={newMessagesClick}>Send message</button>
+      </div>
     </div>
   )
 }

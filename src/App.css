@@ -1,12 +1,13 @@
 .App {
-    display: flex;
+    display: grid;
+    grid-gap: 1vh;
+    grid-template-columns: 1fr 5fr 1fr;
+    height: 100vh;
     margin: 0 auto;
     width: 1280px;
-    align-items: stretch;
 }
 
 .cont {
-    min-height: 770px;
     background-color: rgb(96 0 250 / 13%);
     width: 100%;
 }

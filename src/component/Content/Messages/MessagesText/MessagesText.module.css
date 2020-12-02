@@ -1,17 +1,18 @@
-.minW {
-    min-width: 300px;
-    border-left: solid rgb(60, 0, 128) 3px;
-    order: 2;
-}
-
-textarea {
-    min-width: 99%;
-    min-height: 65px;
-    resize: none;
+.textMessage {
+    height: 100%;
+    border-left: solid #ff000093 2px;
 }
 
 .message {
-    margin: 20px;
-    background-color: rgb(169, 128, 207);
-    border-radius: 0.1em;;
+    margin: 5px;
+    border-radius: 0.7em;
+    background-color: #6200ffc4;
+    color: #fff;
+}
+
+.textarea {
+    position: fixed;
+    bottom: 5px;
+    width: 100vh;
+    background-color: #00000070;
 }

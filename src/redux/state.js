@@ -10,7 +10,7 @@ let stone = {
          { message: "I'm learn Java!", like: 'like: 5' },
          { message: "I'm learn Python!", like: 'like: 33' },
          { message: 'I want programmes!', like: 'like: 42' }],
-         newPostText: 'New post!'
+         newPostText: ''
       },
       messagesPage: {
          userNameMessage: [
@@ -20,7 +20,7 @@ let stone = {
             { name: 'Linda', id: '3' },
             { name: 'Ron', id: '4' },],
          messageText: ['New messages', 'Message',],
-         textMessage: 'New messages!',
+         textMessage: '',
       },
    },
 
@@ -55,16 +55,12 @@ let stone = {
       return this._state;
    },
 
-   dispatchProfile(action) {
+   dispatch(action) {
       if (action.type === ADD_POST) {
          this._newPostClick()
       } else if (action.type === UPDATE_TEXT) {
          this._updatePostText(action.newText)
-      }
-   },
-
-   dispatchMessage(action) {
-      if (action.type === UPDATE_MESSAGES_TEXT) {
+      } else if (action.type === UPDATE_MESSAGES_TEXT) {
          this._updateMessagesText(action.newText)
       } else if (action.type === ADD_MESSAGES) {
          this._addMessage()
@@ -88,8 +84,9 @@ export let actionNewMessagesClick = {
 
 export let actionUpdateMessage = (text) => {
    return {
-   type: UPDATE_MESSAGES_TEXT,
-   newText: text,}
- }
+      type: UPDATE_MESSAGES_TEXT,
+      newText: text,
+   }
+}
 
 export default stone;

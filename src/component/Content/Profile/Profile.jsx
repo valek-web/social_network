@@ -9,7 +9,7 @@ const Profile = (props) => {
   return (
     <content className={q.con}>
       <ProfileBlok />
-      <NewPosts postsMap={props.postsMap} dispatchProfile={props.dispatchProfile} />
+      <NewPosts postsMap={props.postsMap} dispatch={props.dispatch} />
       { mapPosts}
     </content>
   )

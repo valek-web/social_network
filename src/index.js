@@ -9,7 +9,7 @@ export let renderAll = (states) => {
   debugger
   ReactDOM.render(
     <React.StrictMode>
-      <App state={stone.getState()} dispatchProfile={stone.dispatchProfile.bind(stone)} dispatchMessage={stone.dispatchMessage.bind(stone)}/>
+      <App state={stone.getState()} dispatch={stone.dispatch.bind(stone)}/>
     </React.StrictMode>,
     document.getElementById('root')
   );

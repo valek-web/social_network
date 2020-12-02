@@ -9,14 +9,12 @@ const Messages = (props) => {
   debugger
   let mapMessagesName = props.nameMessage.messagesPage.userNameMessage.map(u => <NameMessage name={u.name} id={u.id} />)
   return (
-    <div className={q.mess}>
-      <div className={q.textM}>
-        <MessagesText textMessages={props.nameMessage.messagesPage} dispatchMessage={props.dispatchMessage} />
+    <div className={q.messagesGrid}>
+      <div className={q.nameUsers}>
+        {mapMessagesName}
       </div>
-      <div className={q.nameM}>
-        {
-          mapMessagesName
-        }
+      <div className={q.textM}>
+        <MessagesText textMessages={props.nameMessage.messagesPage} dispatch={props.dispatch} />
       </div>
     </div>
   )

@@ -13,8 +13,8 @@ function App(props) {
       <div className="App">
         <Menu />
         <div className="cont">
-          <Route path='/profile' render={() => <Profile postsMap={props.state} dispatchProfile={props.dispatchProfile} />} />
-          <Route path='/messages' render={() => <Messages nameMessage={props.state} dispatchMessage={props.dispatchMessage}/>} />
+          <Route path='/profile' render={() => <Profile postsMap={props.state} dispatch={props.dispatch} />} />
+          <Route path='/messages' render={() => <Messages nameMessage={props.state} dispatch={props.dispatch}/>} />
         </div>
         <BokRight />
       </div>

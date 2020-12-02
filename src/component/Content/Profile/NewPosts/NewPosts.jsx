@@ -6,11 +6,11 @@ const NewPosts = (props) => {
     const newP = React.createRef()
     let updatePostChangeText = () => {
         let text = newP.current.value;
-        props.dispatchProfile(actionUpdate(text))
+        props.dispatch(actionUpdate(text))
     }
 
     let addTextPost = () => {
-        props.dispatchProfile(actionAddPost())
+        props.dispatch(actionAddPost())
     }
     
     return (
@@ -18,7 +18,8 @@ const NewPosts = (props) => {
             <textarea onChange={updatePostChangeText}
                 ref={newP}
                 className="q.textarea"
-                value={props.postsMap.profilePage.newPostText} />
+                value={props.postsMap.profilePage.newPostText} 
+                placeholder='New post!'/>
             <button onClick={addTextPost}>New post</button>
         </div>)
 }

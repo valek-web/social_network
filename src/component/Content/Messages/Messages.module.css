@@ -1,11 +1,5 @@
-.mess {
-    display: inline-flex;
-    align-items: stretch;
-}
-.textM {
-    order: 2;
-}
-
-.nameM {
-    min-width: 120px;
+.messagesGrid {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 8fr;
 }
