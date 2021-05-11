@@ -7,14 +7,13 @@ import Profile from './component/Content/Profile/Profile';
 import Menu from './component/Menu/Menu';
 
 function App(props) {
-  debugger
   return (
     <BrowserRouter>
       <div className="App">
         <Menu />
         <div className="cont">
           <Route path='/profile' render={() => <Profile postsMap={props.state} dispatch={props.dispatch} />} />
-          <Route path='/messages' render={() => <Messages nameMessage={props.state} dispatch={props.dispatch}/>} />
+          <Route path='/messages' render={() => <Messages nameMessage={props.state} dispatch={props.dispatch} />} />
         </div>
         <BokRight />
       </div>

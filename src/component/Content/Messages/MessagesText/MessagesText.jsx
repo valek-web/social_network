@@ -1,32 +1,33 @@
 import React from 'react';
-import { actionNewMessagesClick, actionUpdateMessage } from '../../../../redux/state';
+import { actionNewMessagesClick, actionUpdateMessage } from '../../../../redux/dialogs_reducer';
 import q from './MessagesText.module.css';
 
 const MessagesText = (props) => {
-
   let inputPost = React.createRef();
-  debugger
-  let mapMessage = props.textMessages.messageText.map(w => <p className={q.message}>{w}</p>)
+  
+  let mapMessage = props.mapMessage;
 
   let newMessagesClick = () => {
-    props.dispatch(actionNewMessagesClick)
+    props.newMessagesClick()
   }
 
   let updateText = () => {
     let text = inputPost.current.value;
-    props.dispatch(actionUpdateMessage(text))
+    props.updateText(text);
   }
+
+  let valueText = props.valueMessageText;
 
   return (
     <div className={q.textMessage}>
       <div>
-      {mapMessage}
+        {mapMessage}
       </div>
       <div className={q.textarea}>
-      <textarea ref={inputPost} onChange={updateText}
-        value={props.textMessages.textMessage}
-        placeholder='New messages!' />
-      <button onClick={newMessagesClick}>Send message</button>
+        <textarea ref={inputPost} onChange={updateText}
+          value={valueText}
+          placeholder='New messages!' />
+        <button onClick={newMessagesClick}>Send message</button>
       </div>
     </div>
   )

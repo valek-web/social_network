@@ -1,24 +1,21 @@
 import React from 'react';
-import { actionAddPost, actionUpdate } from '../../../../redux/state';
 import q from './NewPosts.module.css'
 
 const NewPosts = (props) => {
-    const newP = React.createRef()
+    const newP = React.createRef();
+    let addTextPost = () => {
+        props.addTextPost()
+    }
     let updatePostChangeText = () => {
         let text = newP.current.value;
-        props.dispatch(actionUpdate(text))
+        props.updatePostChangeText(text)
     }
-
-    let addTextPost = () => {
-        props.dispatch(actionAddPost())
-    }
-    
     return (
         <div>
             <textarea onChange={updatePostChangeText}
                 ref={newP}
-                className="q.textarea"
-                value={props.postsMap.profilePage.newPostText} 
+                className={q.textarea}
+                value={props.newPostTexts} 
                 placeholder='New post!'/>
             <button onClick={addTextPost}>New post</button>
         </div>)
