@@ -1,5 +1,16 @@
-.messagesGrid {
-    height: 100%;
-    display: grid;
-    grid-template-columns: 1fr 8fr;
+.box {
+  display: flex;
+}
+
+.nameFrends {
+  background-color: #d5befd;
+  width: 20%;
+  margin: 13px;
+  border-radius: 15px;
+}
+
+.messagesBlock {
+  width: 80%;
+  margin: 13px;
+  border-left: dotted #000 1px;
 }

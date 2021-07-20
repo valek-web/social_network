@@ -1,0 +1,55 @@
+.flex_blog {
+  display: flex;
+  width: 95%;
+  margin: 0 auto;
+  justify-content: space-between;
+  padding: 15px;
+  border-bottom: solid rgb(124, 124, 124) 1px;
+}
+
+.ava {
+  width: 25%;
+}
+
+.ava img {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+}
+
+.info {
+  width: 73%;
+}
+
+.box {
+  height: 15vh;
+  display: flex;
+  justify-content: space-around;
+  padding: 7px;
+}
+
+.textarea {
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  resize: none;
+}
+
+.input {
+  width: 80%;
+  height: 90px;
+}
+
+.buttons {
+  margin: auto 0;
+  width: 17%;
+}
+
+.buttons button {
+  width: 100%;
+}
+
+.scrool {
+  height: 42vh;
+  overflow-y: auto;
+}

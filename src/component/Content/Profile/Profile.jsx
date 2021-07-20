@@ -1,18 +1,14 @@
 import React from 'react';
-import Posts from './Posts/Post';
-import q from './Profile.module.css';
-import ProfileBlok from './ProfileBlok/ProfileBlok';
-import NewPostsConteiner from './NewPosts/NewPostsConteiner';
+import PostsBlockConteiner from './PostsBlock/PostsBlockConteiner';
+import ProfileBlock from './ProfileBlock/ProfileBlock';
 
 const Profile = (props) => {
-  let mapPosts = props.postsMap.profilePage.post.map(i => <Posts message={i.message} like={i.like} />);
-  return (
-    <content className={q.con}>
-      <ProfileBlok />
-      <NewPostsConteiner postsMap={props.postsMap.profilePage} dispatch={props.dispatch} />
-      { mapPosts}
-    </content>
-  )
+    return(
+        <div>
+            <ProfileBlock onState={props.stateProfile}/>
+            <PostsBlockConteiner onState={props.stateProfile}/>
+        </div>
+    )
 }
 
-export default Profile; 
+export default Profile;

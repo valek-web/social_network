@@ -1,22 +1,15 @@
-import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import q from './Messages.module.css';
-import NameMessage from './NameMessage/NameMessage'
-import MessagesTextConteiner from './MessagesText/MessagesTextConteiner';
-
+import React from 'react'
+import w from './Messages.module.css'
+import NameFrends from './NameFrends/NameFrends'
+import MessagesBlockConteiner from './MessagesBlog/MessagesBlockConteiner';
 
 const Messages = (props) => {
-  let mapMessagesName = props.nameMessage.messagesPage.userNameMessage.map(u => <NameMessage name={u.name} id={u.id} />)
-  return (
-    <div className={q.messagesGrid}>
-      <div className={q.nameUsers}>
-        {mapMessagesName}
-      </div>
-      <div className={q.textM}>
-        <MessagesTextConteiner textMessages={props.nameMessage.messagesPage} dispatch={props.dispatch} />
-      </div>
-    </div>
-  )
+    return(
+        <div className={w.box}>
+            <div className={w.nameFrends}><NameFrends/></div>
+            <div className={w.messagesBlock}><MessagesBlockConteiner/></div>
+        </div>
+    )
 }
 
 export default Messages;

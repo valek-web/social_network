@@ -1,23 +1,24 @@
 import React from 'react';
-import { Route, BrowserRouter } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import './App.css';
 import BokRight from './component/Article/Article';
 import Messages from './component/Content/Messages/Messages';
-import Profile from './component/Content/Profile/Profile';
 import Menu from './component/Menu/Menu';
+import BooksConteiner from './component/Content/books/booksConteiner';
+import Profile from './component/Content/Profile/Profile';
 
-function App(props) {
+const App = (props) => {
   return (
-    <BrowserRouter>
       <div className="App">
         <Menu />
         <div className="cont">
-          <Route path='/profile' render={() => <Profile postsMap={props.state} dispatch={props.dispatch} />} />
-          <Route path='/messages' render={() => <Messages nameMessage={props.state} dispatch={props.dispatch} />} />
+          <Route path='/profile' render={() => <Profile stateProfile={props.state} dispatch={props.dispatch} />} />
+          <Route path='/messages' render={() => <Messages stateMessages={props.state} dispatch={props.dispatch} />} />
+          <Route path='/books' render={() => <BooksConteiner stateBooks={props.state} dispatch={props.dispatch} />} />
         </div>
         <BokRight />
       </div>
-    </BrowserRouter>
+     
   );
 }
 

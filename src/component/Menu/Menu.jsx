@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import q from './Menu.module.css';
+import Books from '../Content/books/books';
 
 const Menu = () => {
   return (
@@ -12,7 +13,7 @@ const Menu = () => {
         <NavLink to='/messages'>Messages</NavLink>
       </div>
       <div>
-        Books
+      <NavLink to='/books'>Books</NavLink>
         </div>
         <div>
           <p></p>
