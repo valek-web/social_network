@@ -1,0 +1,26 @@
+.box {
+    display: flex;
+    margin: 7px 15px;
+    background-color: rgba(0, 0, 255, 0.356);
+    border-radius: 15px;
+}
+
+.ava {
+    width: 150px;
+    height: 200px;
+}
+
+.ava img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px 0 0 15px;
+}
+
+.info {
+    margin: 7px;
+}
+
+.items {
+    list-style-type: none;
+}

@@ -13,14 +13,17 @@ const Menu = () => {
         <NavLink to='/messages'>Messages</NavLink>
       </div>
       <div>
-      <NavLink to='/books'>Books</NavLink>
-        </div>
-        <div>
-          <p></p>
-        </div>
-        <div>
-          <span>Settings</span>
-        </div>
+        <NavLink to='/books'>Books</NavLink>
+      </div>
+      <div>
+        <NavLink to='/users'>Users</NavLink>
+      </div>
+      <div>
+        <p></p>
+      </div>
+      <div>
+        <span>Settings</span>
+      </div>
     </nav>
   )
 }
