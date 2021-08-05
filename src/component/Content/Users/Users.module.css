@@ -5,15 +5,25 @@
 
 .countPage {
     height: 5vh;
-    overflow-x: scroll;
     text-align: center;
 }
 
-.active {
-    color: blue;
-    cursor: grab;
+.box_button {
+    width: 30%;
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-around;
 }
 
-.spn {
+.block {
+    color: rgb(150, 149, 149);
+    cursor: not-allowed;
+}
+
+.btn_next {
     cursor: pointer;
+}
+
+.input_current_page {
+    text-align: center;
 }
