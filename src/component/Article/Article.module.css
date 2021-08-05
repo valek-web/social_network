@@ -1,6 +1,10 @@
-
 .book {
     background-color: rgb(119, 35, 255);
     width: 100%;
     color: #fff;
+    overflow-y: scroll;
+  }
+
+  .title_ {
+    margin: 7px;
   }

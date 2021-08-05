@@ -7,20 +7,8 @@
   justify-content: space-between;
 }
 
-.imgBook {
-  margin: 7px;
-  height: 200px;
-  width: 17%;
-}
-
 .info_of_Book {
   width: 82%;
-}
-
-.imgBook img {
-  border-radius: 15px;
-  width: 100%;
-  height: 100%;
 }
 
 .name:before {
@@ -29,4 +17,8 @@
 
 .description:before {
   content: "Description: ";
+}
+
+.box_img {
+  width: 17%;
 }

@@ -13,16 +13,13 @@ const User = (props) => {
     return (
         <div className={w.box}>
             <div className={w.ava}>
-                <img src={props.onPhoto} alt="#" />
+                <img src={props.onPhoto == null ?
+                    'https://cdn.iconscout.com/icon/free/png-512/laptop-user-1-1179329.png' :
+                    props.onPhoto} alt="#" />
             </div>
             <div className={w.info}>
-                <h3>{props.onFirstName + ' ' + props.onLastName}</h3>
-                <ul className={w.items}>
-                    <li>age: {props.onAge}</li>
-                    <li>city: {props.onCity}</li>
-                    <li>books: {props.onBooks}</li>
-                    <li>frends: {props.onFrends}</li>
-                </ul>
+                <h3>{props.onName}</h3>
+                <p>{props.onStatus == null ? 'No status!' : props.onStatus}</p>
                 <button onClick={followUnfollo}>{followUn}</button>
             </div>
         </div>

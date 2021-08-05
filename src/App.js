@@ -1,12 +1,12 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import "./App.css";
-import BokRight from "./component/Article/Article";
 import Messages from "./component/Content/Messages/Messages";
 import Menu from "./component/Menu/Menu";
 import BooksConteiner from "./component/Content/books/booksConteiner";
 import Profile from "./component/Content/Profile/Profile";
 import UsersConteiner from './component/Content/Users/UsersConteiner';
+import ArticleComponent from "./component/Article/ArticleComponent";
 
 const App = (props) => {
   return (
@@ -40,7 +40,7 @@ const App = (props) => {
             <UsersConteiner />)
           } />
       </div>
-      <BokRight />
+      <ArticleComponent />
     </div>
   );
 };

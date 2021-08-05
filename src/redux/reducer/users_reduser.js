@@ -1,9 +1,16 @@
 const FOLLOW_USER = 'FOLLOW_USER'
-const GET_USER = 'GET_USER'
+const SET_USER = 'GET_USER'
+const TOTAL_COUNT = 'TOTAL_COUNT'
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 
 let initionState = {
-    users: []
+    users: [],
+    totalUsersCount: 0,
+    currentPage: 1,
+    pageSize: 3
 }
+
+window.x = initionState;
 
 export const users_reduser = (state = initionState, action) => {
     switch (action.type) {
@@ -12,17 +19,27 @@ export const users_reduser = (state = initionState, action) => {
                 ...state,
                 users: state.users.map(i => {
                     if (i.id == action.id) {
-                        i.follow ? i.follow = false :
-                            i.follow = true
+                        i.followed ? i.followed = false :
+                            i.followed = true
                         return { ...i }
                     }
                     return i;
                 })
             }
-        case GET_USER:
+        case SET_USER:
             return ({
                 ...state,
-                users: [...action.newUsers]
+                users: action.newUsers
+            })
+        case SET_CURRENT_PAGE:
+            return ({
+                ...state,
+                currentPage: action.current
+            })
+        case TOTAL_COUNT:
+            return ({
+                ...state,
+                totalUsersCount: action.totalUsersCountNumber
             })
         default:
             return (state)
@@ -37,6 +54,18 @@ export let ACfollowUsers = (id) => {
 
 export let ACgetUsers = (newUsers) => {
     return (
-        { type: GET_USER, newUsers }
+        { type: SET_USER, newUsers }
     )
+}
+
+export let ACtotalCount = (totalUsersCountNumber) => {
+    return (
+        { type: TOTAL_COUNT, totalUsersCountNumber }
+    )
+}
+
+export let ACsetCurrentPage = (current) => {
+    return ({
+        type: SET_CURRENT_PAGE, current
+    })
 }

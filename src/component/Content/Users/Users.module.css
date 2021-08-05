@@ -1,4 +1,19 @@
 .box {
-    height: 100vh;
-    overflow-y: scroll;
+    height: 95vh;
+    overflow-y: hidden;
+}
+
+.countPage {
+    height: 5vh;
+    overflow-x: scroll;
+    text-align: center;
+}
+
+.active {
+    color: blue;
+    cursor: grab;
+}
+
+.spn {
+    cursor: pointer;
 }

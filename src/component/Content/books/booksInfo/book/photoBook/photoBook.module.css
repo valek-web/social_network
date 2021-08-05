@@ -1,0 +1,12 @@
+.imgBook img {
+    border-radius: 15px;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .imgBook {
+    margin: 7px auto;
+    height: 200px;
+    width: 90%;
+  }
+  

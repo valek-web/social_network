@@ -1,5 +1,6 @@
 import React from "react";
 import i from "./book.module.css";
+import PhotoBook from "./photoBook/photoBook";
 
 const Book = (props) => {
   let stateBook = props.added ? "Delete" : "Add";
@@ -11,8 +12,8 @@ const Book = (props) => {
 
   return (
     <div className={i.conteiner}>
-      <div className={i.imgBook}>
-        <img src={props.url} alt="#" />
+      <div className={i.box_img}>
+        <PhotoBook onUrl={props.url} />
       </div>
       <div className={i.info_of_Book}>
         <h3 className={i.name}>{props.name}</h3>

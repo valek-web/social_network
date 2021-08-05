@@ -2,32 +2,34 @@ import React from "react";
 import s from "./books.module.css";
 import BooksInfo from "./booksInfo/booksInfo";
 
-const Books = (props) => {
-  const newSymbol = React.createRef();
-  let updateChangeSymbol = () => {
-    let text = newSymbol.current.value;
-    props.updateChange(text);
-  };
+class Books extends React.Component {
+  render = () => {
+    const newSymbol = React.createRef();
+    let updateChangeSymbol = () => {
+      let text = newSymbol.current.value;
+      this.props.updateChange(text);
+    };
 
-  let valueText = props.valueText;
-  return (
-    <div>
-      <input
-        className={s.input_search}
-        placeholder="Name book"
-        value={valueText}
-        ref={newSymbol}
-        onChange={updateChangeSymbol}
-      ></input>
-      <div className={s.books}>
-        <BooksInfo
-          onStateBooks={props.stateBooks}
-          onUpdateStateBooks={props.updateStateBooks}
-          onSetBooks={props.setBooks}
-        />
+    let valueText = this.props.valueText;
+    return (
+      <div>
+        <input
+          className={s.input_search}
+          placeholder="Name book"
+          value={valueText}
+          ref={newSymbol}
+          onChange={updateChangeSymbol}
+        ></input>
+        <div className={s.books}>
+          <BooksInfo
+            onStateBooks={this.props.stateBooks}
+            onUpdateStateBooks={this.props.updateStateBooks}
+            onSetBooks={this.props.setBooks}
+          />
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default Books;
