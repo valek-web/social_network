@@ -1,32 +1,31 @@
-import React from "react";
-import { connect } from "react-redux";
+import { connect } from 'react-redux'
 import {
-  actionNewMessagesClick,
-  actionUpdateMessage,
-} from "../../../../redux/reducer/dialogs_reducer";
-import MessagesBlock from "./MessagesBlock";
+    actionNewMessagesClick,
+    actionUpdateMessage,
+} from '../../../../redux/reducer/dialogs_reducer'
+import MessagesBlock from './MessagesBlock'
 
-let mapStateToProps = (state) => {
-  return {
-    messageMap: state.messagesPage.messageText,
-    textValue: state.messagesPage.textNewMessage,
-  };
-};
+let mapStateToProps = state => {
+    return {
+        messageMap: state.messagesPage.messageText,
+        textValue: state.messagesPage.textNewMessage,
+    }
+}
 
-let mapDispacthToProps = (dispatch) => {
-  return {
-    updateTextarea: (text) => {
-      dispatch(actionUpdateMessage(text));
-    },
-    addMessage: () => {
-      dispatch(actionNewMessagesClick());
-    },
-  };
-};
+let mapDispacthToProps = dispatch => {
+    return {
+        updateTextarea: text => {
+            dispatch(actionUpdateMessage(text))
+        },
+        addMessage: () => {
+            dispatch(actionNewMessagesClick())
+        },
+    }
+}
 
 const MessagesBlockConteiner = connect(
-  mapStateToProps,
-  mapDispacthToProps
-)(MessagesBlock);
+    mapStateToProps,
+    mapDispacthToProps
+)(MessagesBlock)
 
-export default MessagesBlockConteiner;
+export default MessagesBlockConteiner

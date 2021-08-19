@@ -1,14 +1,14 @@
-import React from "react";
-import PostsBlockConteiner from "./PostsBlock/PostsBlockConteiner";
-import ProfileBlock from "./ProfileBlock/ProfileBlock";
+import React from 'react'
+import PostsBlockConteiner from './PostsBlock/PostsBlockConteiner'
+import ProfileBlockConteiner from './ProfileBlock/ProfileBlockContainer'
 
-const Profile = (props) => {
-  return (
-    <div>
-      <ProfileBlock onState={props.stateProfile} />
-      <PostsBlockConteiner onState={props.stateProfile} />
-    </div>
-  );
-};
+const Profile = props => {
+    return (
+        <div>
+            <ProfileBlockConteiner />
+            <PostsBlockConteiner />
+        </div>
+    )
+}
 
-export default Profile;
+export default Profile

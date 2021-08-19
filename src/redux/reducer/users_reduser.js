@@ -5,12 +5,12 @@ const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 
 let initionState = {
     users: [],
-    totalUsersCount: 0,
+    totalUsers: null,
     currentPage: 1,
-    pageSize: 3
+    pageSize: 3,
 }
 
-window.x = initionState;
+window.x = initionState
 
 export const users_reduser = (state = initionState, action) => {
     switch (action.type) {
@@ -18,54 +18,48 @@ export const users_reduser = (state = initionState, action) => {
             return {
                 ...state,
                 users: state.users.map(i => {
-                    if (i.id == action.id) {
-                        i.followed ? i.followed = false :
-                            i.followed = true
+                    if (i.id === action.id) {
+                        i.followed ? (i.followed = false) : (i.followed = true)
                         return { ...i }
                     }
-                    return i;
-                })
+                    return i
+                }),
             }
         case SET_USER:
-            return ({
+            return {
                 ...state,
-                users: action.newUsers
-            })
+                users: action.newUsers,
+            }
         case SET_CURRENT_PAGE:
-            return ({
+            return {
                 ...state,
-                currentPage: action.current
-            })
+                currentPage: action.current,
+            }
         case TOTAL_COUNT:
-            return ({
+            return {
                 ...state,
-                totalUsersCount: action.totalUsersCountNumber
-            })
+                totalUsers: action.value,
+            }
         default:
-            return (state)
+            return state
     }
 }
 
-export let ACfollowUsers = (id) => {
-    return (
-        { type: FOLLOW_USER, id }
-    )
+export let onFollowUnfollowUser = id => {
+    return { type: FOLLOW_USER, id }
 }
 
-export let ACgetUsers = (newUsers) => {
-    return (
-        { type: SET_USER, newUsers }
-    )
+export let onSetUsers = newUsers => {
+    return { type: SET_USER, newUsers }
 }
 
-export let ACtotalCount = (totalUsersCountNumber) => {
-    return (
-        { type: TOTAL_COUNT, totalUsersCountNumber }
-    )
+export let onSetTotalCount = totalCountNumber => {
+    return { type: TOTAL_COUNT, value: totalCountNumber }
 }
 
-export let ACsetCurrentPage = (current) => {
-    return ({
-        type: SET_CURRENT_PAGE, current
-    })
+export let onSetCurrentPage = current => {
+    return {
+        type: SET_CURRENT_PAGE,
+        current,
+    }
 }

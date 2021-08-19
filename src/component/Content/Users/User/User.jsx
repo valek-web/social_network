@@ -1,21 +1,28 @@
 import React from 'react'
-import w from "./User.module.css"
+import { NavLink } from 'react-router-dom'
+import w from './User.module.css'
 
-const User = (props) => {
-
-    let followUn = props.onFollow ? 'Unfollow' : 'Follow';
+const User = props => {
+    let followUn = props.onFollow ? 'Unfollow' : 'Follow'
 
     let followUnfollo = () => {
-        let idUser = props.onID;
+        let idUser = props.onID
         props.onFollowun(idUser)
     }
 
     return (
         <div className={w.box}>
             <div className={w.ava}>
-                <img src={props.onPhoto == null ?
-                    'https://cdn.iconscout.com/icon/free/png-512/laptop-user-1-1179329.png' :
-                    props.onPhoto} alt="#" />
+                <NavLink to={'/profile/' + props.onID}>
+                    <img
+                        src={
+                            !props.onPhoto
+                                ? 'https://cdn.iconscout.com/icon/free/png-512/laptop-user-1-1179329.png'
+                                : props.onPhoto
+                        }
+                        alt="#"
+                    />
+                </NavLink>
             </div>
             <div className={w.info}>
                 <h3>{props.onName}</h3>
@@ -26,4 +33,4 @@ const User = (props) => {
     )
 }
 
-export default User;
+export default User

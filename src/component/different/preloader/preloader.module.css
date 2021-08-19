@@ -1,0 +1,13 @@
+.box_img {
+    width: 100fr;
+    height: 100vh;
+    background-color: #fff;
+}
+
+.img {
+    width: 10fr;
+    height: 10vh;
+    display: block;
+    margin: 0 auto;
+    padding-top: 45vh;
+}
