@@ -20,11 +20,7 @@ export const different_reducer = (state = initialState, action) => {
             return {
                 ...state,
                 myDate: action.date.data,
-                login: !action.date.resultCode
-                    ? action.date.resultCode === 0
-                        ? true
-                        : false
-                    : true,
+                login: !action.date.resultCode,
             }
         default:
             return state

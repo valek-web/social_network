@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Menu from './Menu'
 import * as axios from 'axios'
+import { setDate } from '../../redux/reducer/different_reducer'
 
 class MenuConteinerAPI extends React.Component {
     componentDidMount = () => {
@@ -10,15 +11,21 @@ class MenuConteinerAPI extends React.Component {
                 withCredentials: true,
             })
             .then(respons => {
-                debugger
+                this.props.setDate(respons.data)
             })
     }
 
     render = () => {
-        return <Menu />
+        return <Menu {...this.props} />
     }
 }
 
-const MenuConteiner = connect()(MenuConteinerAPI)
+let mapStateToProps = state => {
+    return {
+        log: state.differentPage.login,
+    }
+}
+
+const MenuConteiner = connect(mapStateToProps, { setDate })(MenuConteinerAPI)
 
 export default MenuConteiner
