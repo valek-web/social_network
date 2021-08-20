@@ -2,12 +2,13 @@ import React from 'react'
 import w from './ProfileBlock.module.css'
 
 const ProfileBlock = props => {
+    debugger
     return (
         <div className={w.flex_blog}>
             <div className={w.ava}>
                 <img
                     src={
-                        props.onProfile.photos.large == null
+                        !props.onProfile.photos.large
                             ? 'https://cdn.iconscout.com/icon/free/png-512/laptop-user-1-1179329.png'
                             : props.onProfile.photos.large
                     }

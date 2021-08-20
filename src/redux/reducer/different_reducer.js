@@ -16,7 +16,6 @@ export const different_reducer = (state = initialState, action) => {
                 preloader: action.newBool,
             }
         case SET_MY_DATE:
-            debugger
             return {
                 ...state,
                 myDate: action.date.data,

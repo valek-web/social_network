@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom'
 import q from './Menu.module.css'
 
 const Menu = props => {
-    debugger
     return (
         <nav className={q.nav}>
             <div>

@@ -4,6 +4,7 @@ const SET_PROFILE = 'SET_PROFILE'
 
 let initialState = {
     profile: null,
+    boolDate: false,
     post: [
         { message: 'New post!', like: 2, id: 0 },
         { message: "I'm learn Java!", like: 5, id: 1 },
@@ -36,9 +37,11 @@ export const profile_reducer = (state = initialState, action) => {
             }
         }
         case SET_PROFILE: {
+            debugger
             return {
                 ...state,
                 profile: action.date,
+                boolDate: true,
             }
         }
         default:
