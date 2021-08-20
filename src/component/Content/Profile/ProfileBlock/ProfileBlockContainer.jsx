@@ -14,28 +14,17 @@ import { setDate } from '../../../../redux/reducer/different_reducer'
 
 class ProfileBlockConteinerAPI extends React.Component {
     componentDidMount = () => {
-        debugger
-        !this.props.log
-            ? console.log('nol date')
-            : axios
-                  .get(
-                      `https://social-network.samuraijs.com/api/1.0/profile/${
-                          !this.props.match.params.id
-                              ? this.props.onMyID.id
-                              : this.props.match.params.id
-                      }`
-                  )
-                  .then(respons => {
-                      debugger
-                      this.props.setProfileInfo(respons.data)
-                  })
+        axios
+            .get(
+                `https://social-network.samuraijs.com/api/1.0/profile/${this.props.match.params.id}`
+            )
+            .then(respons => {
+                this.props.setProfileInfo(respons.data)
+            })
     }
-
     render = () => {
-        debugger
-        return this.props.boolProfile === false ? (
+        return !this.props.boolProfile ? (
             <>
-                {this.componentDidMount()}
                 <Preloader loading={load} />
             </>
         ) : (

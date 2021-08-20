@@ -12,7 +12,6 @@ class MenuConteinerAPI extends React.Component {
                 withCredentials: true,
             })
             .then(respons => {
-                debugger
                 this.props.setDate(respons.data)
             })
     }

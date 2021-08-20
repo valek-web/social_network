@@ -13,7 +13,7 @@ const App = props => {
         <div className="App">
             <MenuConteiner />
             <div className="cont">
-                <Route path="/profile" render={() => <Profile />} />
+                <Route path="/profile/:id?" render={() => <Profile />} />
                 <Route
                     path="/messages"
                     render={() => (
