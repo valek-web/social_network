@@ -6,7 +6,6 @@ import { setDate } from '../../redux/reducer/different_reducer'
 
 class MenuConteinerAPI extends React.Component {
     componentDidMount = () => {
-        debugger
         axios
             .get('https://social-network.samuraijs.com/api/1.0/auth/me', {
                 withCredentials: true,
@@ -17,7 +16,6 @@ class MenuConteinerAPI extends React.Component {
     }
 
     render = () => {
-        debugger
         return <Menu {...this.props} />
     }
 }

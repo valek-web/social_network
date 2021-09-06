@@ -6,6 +6,7 @@ let initialState = {
     preloader: true,
     myDate: null,
     login: false,
+    myID: null,
 }
 
 export const different_reducer = (state = initialState, action) => {
@@ -20,6 +21,7 @@ export const different_reducer = (state = initialState, action) => {
                 ...state,
                 myDate: action.date.data,
                 login: !action.date.resultCode,
+                myID: action.date.data.id,
             }
         default:
             return state

@@ -17,7 +17,9 @@ const ProfileBlock = props => {
             </div>
             <div className={w.info}>
                 <h2>{props.onProfile.fullName}</h2>
-                <p>{props.onProfile.aboutMe}</p>
+                <p>
+                    {!props.onProfile.aboutMe ? 'Nol' : props.onProfile.aboutMe}
+                </p>
                 <p>
                     {props.onProfile.lookingForAJob === true
                         ? 'Ищу работу'

@@ -14,9 +14,17 @@ import { setDate } from '../../../../redux/reducer/different_reducer'
 
 class ProfileBlockConteinerAPI extends React.Component {
     componentDidMount = () => {
+        debugger
         axios
             .get(
-                `https://social-network.samuraijs.com/api/1.0/profile/${this.props.match.params.id}`
+                `https://social-network.samuraijs.com/api/1.0/profile/${
+                    !this.props.match.params.id
+                        ? this.props.onMyID
+                        : this.props.match.params.id
+                }`,
+                {
+                    withCredentials: true,
+                }
             )
             .then(respons => {
                 this.props.setProfileInfo(respons.data)
@@ -25,7 +33,13 @@ class ProfileBlockConteinerAPI extends React.Component {
     render = () => {
         return !this.props.boolProfile ? (
             <>
+                {this.componentDidMount()}
                 <Preloader loading={load} />
+            </>
+        ) : !this.props.match.params.id ? (
+            <>
+                {this.componentDidMount()}
+                <ProfileBlock {...this.props} />
             </>
         ) : (
             <ProfileBlock {...this.props} />
@@ -37,7 +51,7 @@ let mapStateToProps = state => {
     return {
         onProfile: state.profilePage.profile,
         boolProfile: state.profilePage.boolDate,
-        onMyID: state.differentPage.myDate,
+        onMyID: state.differentPage.myID,
         log: state.differentPage.login,
     }
 }

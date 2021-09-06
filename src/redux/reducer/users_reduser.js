@@ -10,8 +10,6 @@ let initionState = {
     pageSize: 3,
 }
 
-window.x = initionState
-
 export const users_reduser = (state = initionState, action) => {
     switch (action.type) {
         case FOLLOW_USER:

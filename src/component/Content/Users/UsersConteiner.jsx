@@ -18,7 +18,10 @@ class UsersConteinerAPI extends React.Component {
             this.props.setLoader(true)
             axios
                 .get(
-                    `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`
+                    `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`,
+                    {
+                        withCredentials: true,
+                    }
                 )
                 .then(respons => {
                     this.props.setLoader(false)
@@ -42,7 +45,10 @@ class UsersConteinerAPI extends React.Component {
 
         axios
             .get(
-                `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${currentPageNum}`
+                `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${currentPageNum}`,
+                {
+                    withCredentials: true,
+                }
             )
             .then(respons => {
                 this.props.setLoader(false)
@@ -51,6 +57,7 @@ class UsersConteinerAPI extends React.Component {
     }
 
     render = () => {
+        debugger
         return this.props.loader ? (
             <Preloader loading={load} />
         ) : (
@@ -59,7 +66,7 @@ class UsersConteinerAPI extends React.Component {
                 onTotalUsersCount={this.props.totalUsersCount}
                 onPageSize={this.props.pageSize}
                 onCurrentPage={this.props.currentPage}
-                followUnfollowUser={this.props.onFollowUnfollowUser}
+                {...this.props}
                 onClickBtn={this.onPageClick}
             />
         )
@@ -72,6 +79,7 @@ let mapStateToProps = state => {
         totalUsersCount: state.usersPage.totalUsers,
         pageSize: state.usersPage.pageSize,
         currentPage: state.usersPage.currentPage,
+        // onFollowUnfollowUser: state,
         users: state.usersPage.users,
         loader: state.differentPage.preloader,
     }

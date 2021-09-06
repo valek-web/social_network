@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-expressions */
 import React from 'react'
 import User from './User/User'
 import s from './Users.module.css'
@@ -7,11 +6,10 @@ const Users = props => {
     let onMaxPage = () => {
         return Math.ceil(props.onTotalUsersCount / props.onPageSize)
     }
+    // console.log(props.followUnfollowUser)
 
-    console.log(onMaxPage())
-
-    let clickBtnPage = (bool, onMaxPage) => {
-        props.onClickBtn(bool, onMaxPage)
+    let clickBtnPage = (bool, onMaxPages = onMaxPage) => {
+        props.onClickBtn(bool, onMaxPages)
     }
 
     let mapUser = props.users.map(i => {
@@ -22,7 +20,7 @@ const Users = props => {
                 onStatus={i.status}
                 onFollow={i.followed}
                 onID={i.id}
-                onFollowun={props.followUnfollowUser}
+                onFollowun={props.onFollowUnfollowUser}
                 key={i.id}
             />
         )
@@ -36,9 +34,7 @@ const Users = props => {
                     <div
                         className={current === 1 ? s.block : s.btn_next}
                         onClick={
-                            current !== 1
-                                ? () => clickBtnPage(false, onMaxPage)
-                                : null
+                            current !== 1 ? () => clickBtnPage(false) : null
                         }
                     >
                         ⇐
@@ -50,7 +46,7 @@ const Users = props => {
                         }
                         onClick={
                             current !== onMaxPage()
-                                ? () => clickBtnPage(true, onMaxPage)
+                                ? () => clickBtnPage(true)
                                 : null
                         }
                     >
