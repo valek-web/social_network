@@ -2,7 +2,6 @@ import React from 'react'
 import w from './ProfileBlock.module.css'
 
 const ProfileBlock = props => {
-    debugger
     return (
         <div className={w.flex_blog}>
             <div className={w.ava}>

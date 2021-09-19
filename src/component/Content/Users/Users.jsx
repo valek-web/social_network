@@ -6,7 +6,6 @@ const Users = props => {
     let onMaxPage = () => {
         return Math.ceil(props.onTotalUsersCount / props.onPageSize)
     }
-    // console.log(props.followUnfollowUser)
 
     let clickBtnPage = (bool, onMaxPages = onMaxPage) => {
         props.onClickBtn(bool, onMaxPages)
@@ -21,7 +20,11 @@ const Users = props => {
                 onFollow={i.followed}
                 onID={i.id}
                 onFollowun={props.onFollowUnfollowUser}
+                following={props.toggleFollowing}
                 key={i.id}
+                onToggleFollowingProgress={props.toggleFollowingProgress}
+                onFollowOn={props.followThunkCreator}
+                onUnfollowOn={props.unfollowThunkCreator}
             />
         )
     })

@@ -1,11 +1,15 @@
 import React from 'react'
-import * as axios from 'axios'
 import { connect } from 'react-redux'
 import {
     onFollowUnfollowUser,
     onSetUsers,
     onSetTotalCount,
     onSetCurrentPage,
+    toggleFollowingProgress,
+    setUsersThunkCreator,
+    newPageThunkCreator,
+    followThunkCreator,
+    unfollowThunkCreator,
 } from '../../../redux/reducer/users_reduser'
 import Users from './Users'
 import Preloader from '../../different/preloader/preloader'
@@ -14,50 +18,18 @@ import { setLoader } from '../../../redux/reducer/different_reducer'
 
 class UsersConteinerAPI extends React.Component {
     componentDidMount = () => {
-        if (this.props.users.length === 0) {
-            this.props.setLoader(true)
-            axios
-                .get(
-                    `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`,
-                    {
-                        withCredentials: true,
-                    }
-                )
-                .then(respons => {
-                    this.props.setLoader(false)
-                    this.props.onSetTotalCount(respons.data.totalCount)
-                    this.props.onSetUsers(respons.data.items)
-                })
-        }
+        this.props.setUsersThunkCreator(
+            this.props.users.length,
+            this.props.pageSize,
+            this.props.currentPage
+        )
     }
 
     onPageClick = (bool, onMaxPage, pageNum = this.props.currentPage) => {
-        let currentPageNum = bool
-            ? pageNum === onMaxPage()
-                ? pageNum
-                : pageNum + 1
-            : pageNum === 1
-            ? pageNum
-            : pageNum - 1
-
-        this.props.onSetCurrentPage(currentPageNum)
-        this.props.setLoader(true)
-
-        axios
-            .get(
-                `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${currentPageNum}`,
-                {
-                    withCredentials: true,
-                }
-            )
-            .then(respons => {
-                this.props.setLoader(false)
-                this.props.onSetUsers(respons.data.items)
-            })
+        this.props.newPageThunkCreator(bool, onMaxPage, pageNum)
     }
 
     render = () => {
-        debugger
         return this.props.loader ? (
             <Preloader loading={load} />
         ) : (
@@ -79,9 +51,9 @@ let mapStateToProps = state => {
         totalUsersCount: state.usersPage.totalUsers,
         pageSize: state.usersPage.pageSize,
         currentPage: state.usersPage.currentPage,
-        // onFollowUnfollowUser: state,
         users: state.usersPage.users,
         loader: state.differentPage.preloader,
+        toggleFollowing: state.usersPage.toggleFollowing,
     }
 }
 
@@ -91,6 +63,11 @@ const UsersConteiner = connect(mapStateToProps, {
     onSetCurrentPage,
     onSetTotalCount,
     setLoader,
+    toggleFollowingProgress,
+    setUsersThunkCreator,
+    newPageThunkCreator,
+    followThunkCreator,
+    unfollowThunkCreator,
 })(UsersConteinerAPI)
 
 export default UsersConteiner
