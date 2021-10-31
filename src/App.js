@@ -10,12 +10,12 @@ import MenuConteiner from './component/Menu/MenuConteiner'
 
 const App = props => {
     return (
-        <div className="App">
+        <div className='App'>
             <MenuConteiner />
-            <div className="cont">
-                <Route path="/profile/:id?" render={() => <Profile />} />
+            <div className='cont'>
+                <Route path='/profile/:id?' render={() => <Profile />} />
                 <Route
-                    path="/messages"
+                    path='/messages:id?'
                     render={() => (
                         <Messages
                             stateMessages={props.state}
@@ -24,7 +24,7 @@ const App = props => {
                     )}
                 />
                 <Route
-                    path="/books"
+                    path='/books'
                     render={() => (
                         <BooksConteiner
                             stateBooks={props.state}
@@ -32,7 +32,7 @@ const App = props => {
                         />
                     )}
                 />
-                <Route path="/users" render={() => <UsersConteiner />} />
+                <Route path='/users' render={() => <UsersConteiner />} />
             </div>
             <ArticleComponent />
         </div>

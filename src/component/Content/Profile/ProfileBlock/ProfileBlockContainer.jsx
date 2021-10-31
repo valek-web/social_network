@@ -4,32 +4,22 @@ import {
     actionAddPost,
     actionUpdate,
     setProfileInfo,
+    getProfileInfo,
 } from '../../../../redux/reducer/profile_reducer'
 import ProfileBlock from './ProfileBlock'
 import Preloader from '../../../different/preloader/preloader'
 import load from './../../../../img/load_book.gif'
 import { withRouter } from 'react-router-dom'
 import { setDate } from '../../../../redux/reducer/different_reducer'
-import { globalAPI } from '../../../../api/api'
 
 class ProfileBlockConteinerAPI extends React.Component {
     componentDidMount = () => {
-        globalAPI
-            .profileInfo(
-                !this.props.match.params.id
-                    ? this.props.onMyID
-                    : this.props.match.params.id
-            )
-            .then(data => {
-                this.props.setProfileInfo(data)
-            })
+        this.props.getProfileInfo(this.props.match.params.id, this.props.onMyID)
     }
+
     render = () => {
         return !this.props.boolProfile ? (
-            <>
-                {this.componentDidMount()}
-                <Preloader loading={load} />
-            </>
+            <>{<Preloader loading={load} />}</>
         ) : (
             <ProfileBlock {...this.props} />
         )
@@ -50,6 +40,7 @@ const ProfileBlockConteiner = connect(mapStateToProps, {
     actionAddPost,
     setProfileInfo,
     setDate,
+    getProfileInfo,
 })(withRouter(ProfileBlockConteinerAPI))
 
 export default ProfileBlockConteiner

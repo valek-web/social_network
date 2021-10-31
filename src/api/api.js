@@ -15,7 +15,6 @@ export const globalAPI = {
             .then(respons => respons.data)
     },
     unfollow(onID) {
-        debugger
         return instance.delete(`follow/${onID}`).then(respons => respons.data)
     },
     follow(onID) {
@@ -23,5 +22,8 @@ export const globalAPI = {
     },
     profileInfo(id) {
         return instance.get(`profile/${id}`).then(respons => respons.data)
+    },
+    setProfileMe() {
+        return instance.get('auth/me').then(respons => respons.data)
     },
 }

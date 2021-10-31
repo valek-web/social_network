@@ -1,3 +1,6 @@
+import { globalAPI } from '../../api/api'
+import { setDate } from './different_reducer'
+
 const UPDATE_TEXT = 'UPDATE_TEXT'
 const ADD_POST = 'ADD_POST'
 const SET_PROFILE = 'SET_PROFILE'
@@ -57,4 +60,19 @@ export let actionAddPost = () => {
 }
 export let setProfileInfo = date => {
     return { type: SET_PROFILE, date }
+}
+
+export const getProfileInfo = (urlID, myID) => dispatch => {
+    if (!urlID && !myID) {
+        globalAPI.setProfileMe().then(date => {
+            dispatch(setDate(date))
+            globalAPI.profileInfo(date.data.id).then(data => {
+                dispatch(setProfileInfo(data))
+            })
+        })
+    } else {
+        globalAPI.profileInfo(!urlID ? myID : urlID).then(data => {
+            dispatch(setProfileInfo(data))
+        })
+    }
 }

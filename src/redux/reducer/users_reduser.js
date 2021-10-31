@@ -97,7 +97,7 @@ export const setUsersThunkCreator = (usersLength, pageSize, currentPage) => {
     }
 }
 
-export const newPageThunkCreator = (bool, onMaxPage, pageNum, pageSize) => {
+export const newPageThunkCreator = (bool, onMaxPage, pageNum) => {
     let currentPageNum = bool
         ? pageNum === onMaxPage()
             ? pageNum
@@ -116,7 +116,6 @@ export const newPageThunkCreator = (bool, onMaxPage, pageNum, pageSize) => {
 }
 
 export const followThunkCreator = onID => {
-    debugger
     return dispatch => {
         dispatch(toggleFollowingProgress(onID, true))
         globalAPI.follow(onID).then(date => {
@@ -129,12 +128,9 @@ export const followThunkCreator = onID => {
 }
 
 export const unfollowThunkCreator = onID => {
-    debugger
     return dispatch => {
-        debugger
         dispatch(toggleFollowingProgress(onID, true))
         globalAPI.unfollow(onID).then(date => {
-            debugger
             if (date.resultCode === 0) {
                 dispatch(onFollowUnfollowUser(onID))
                 dispatch(toggleFollowingProgress(onID, false))

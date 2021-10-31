@@ -1,3 +1,5 @@
+import { globalAPI } from '../../api/api'
+
 const LOADER = 'LOADER'
 const SET_MY_DATE = 'SET_MY_DATE'
 
@@ -40,4 +42,10 @@ export const setDate = date => {
         type: SET_MY_DATE,
         date,
     }
+}
+
+export const setProfileInfoMe = () => dispatch => {
+    globalAPI.setProfileMe().then(date => {
+        dispatch(setDate(date))
+    })
 }
