@@ -1,20 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {
-    actionAddPost,
-    actionUpdate,
-    setProfileInfo,
     getProfileInfo,
+    getStatus,
 } from '../../../../redux/reducer/profile_reducer'
 import ProfileBlock from './ProfileBlock'
 import Preloader from '../../../different/preloader/preloader'
 import load from './../../../../img/load_book.gif'
 import { withRouter } from 'react-router-dom'
-import { setDate } from '../../../../redux/reducer/different_reducer'
+import { AuthRedirect } from '../../../hoc/AuthRedirect'
+import { compose } from 'redux'
 
 class ProfileBlockConteinerAPI extends React.Component {
     componentDidMount = () => {
         this.props.getProfileInfo(this.props.match.params.id, this.props.onMyID)
+        this.props.getStatus(this.props.match.params.id, this.props.onMyID)
     }
 
     render = () => {
@@ -28,19 +28,23 @@ class ProfileBlockConteinerAPI extends React.Component {
 
 let mapStateToProps = state => {
     return {
+        status: state.profilePage.status,
         onProfile: state.profilePage.profile,
         boolProfile: state.profilePage.boolDate,
         onMyID: state.differentPage.myID,
         log: state.differentPage.login,
+        auth: state.differentPage.login,
     }
 }
 
-const ProfileBlockConteiner = connect(mapStateToProps, {
-    actionUpdate,
-    actionAddPost,
-    setProfileInfo,
-    setDate,
-    getProfileInfo,
-})(withRouter(ProfileBlockConteinerAPI))
+export default compose(
+    connect(mapStateToProps, { getProfileInfo, getStatus }),
+    withRouter,
+    AuthRedirect
+)(ProfileBlockConteinerAPI)
 
-export default ProfileBlockConteiner
+// const ProfileBlockConteiner = connect(mapStateToProps, { getProfileInfo })(
+//     withRouter(AuthRedirect(ProfileBlockConteinerAPI))
+// )
+
+// export default ProfileBlockConteiner

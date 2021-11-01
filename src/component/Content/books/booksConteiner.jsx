@@ -5,11 +5,14 @@ import {
     setBooksAC,
 } from '../../../redux/reducer/books_reducer'
 import { connect } from 'react-redux'
+import { AuthRedirect } from '../../hoc/AuthRedirect'
+import { compose } from 'redux'
 
 let mapStateToProps = state => {
     return {
         stateBooks: state.booksPage.books,
         valueText: state.booksPage.valueInput,
+        auth: state.differentPage.login,
     }
 }
 let mapDisptchToProps = dispatch => {
@@ -26,6 +29,7 @@ let mapDisptchToProps = dispatch => {
     }
 }
 
-let BooksConteiner = connect(mapStateToProps, mapDisptchToProps)(Books)
-
-export default BooksConteiner
+export default compose(
+    connect(mapStateToProps, mapDisptchToProps),
+    AuthRedirect
+)(Books)

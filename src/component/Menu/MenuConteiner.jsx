@@ -1,10 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Menu from './Menu'
-import {
-    setDate,
-    setProfileInfoMe,
-} from '../../redux/reducer/different_reducer'
+import { setProfileInfoMe } from '../../redux/reducer/different_reducer'
 
 class MenuConteinerAPI extends React.Component {
     componentDidMount = () => {
@@ -22,7 +19,7 @@ let mapStateToProps = state => {
     }
 }
 
-const MenuConteiner = connect(mapStateToProps, { setDate, setProfileInfoMe })(
+const MenuConteiner = connect(mapStateToProps, { setProfileInfoMe })(
     MenuConteinerAPI
 )
 

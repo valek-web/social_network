@@ -4,9 +4,11 @@ import { setDate } from './different_reducer'
 const UPDATE_TEXT = 'UPDATE_TEXT'
 const ADD_POST = 'ADD_POST'
 const SET_PROFILE = 'SET_PROFILE'
+const GET_STATUS = 'GET_STATUS'
 
 let initialState = {
     profile: null,
+    status: null,
     boolDate: false,
     post: [
         { message: 'New post!', like: 2, id: 0 },
@@ -40,11 +42,16 @@ export const profile_reducer = (state = initialState, action) => {
             }
         }
         case SET_PROFILE: {
-            debugger
             return {
                 ...state,
                 profile: action.date,
                 boolDate: true,
+            }
+        }
+        case GET_STATUS: {
+            return {
+                ...state,
+                status: action.date,
             }
         }
         default:
@@ -52,14 +59,20 @@ export const profile_reducer = (state = initialState, action) => {
     }
 }
 
+// action Creator
+
 export let actionUpdate = text => {
     return { type: UPDATE_TEXT, newText: text }
 }
 export let actionAddPost = () => {
     return { type: ADD_POST }
 }
-export let setProfileInfo = date => {
+let setProfileInfo = date => {
     return { type: SET_PROFILE, date }
+}
+
+let getProfileStatusAC = date => {
+    return { type: GET_STATUS, date }
 }
 
 export const getProfileInfo = (urlID, myID) => dispatch => {
@@ -73,6 +86,25 @@ export const getProfileInfo = (urlID, myID) => dispatch => {
     } else {
         globalAPI.profileInfo(!urlID ? myID : urlID).then(data => {
             dispatch(setProfileInfo(data))
+        })
+    }
+}
+export const getStatus = (urlID, myID) => dispatch => {
+    if (!urlID && !myID) {
+        globalAPI.setProfileMe().then(respons => {
+            debugger
+            dispatch(setDate(respons))
+            globalAPI.getProfileStatus(respons.data.id).then(date => {
+                dispatch(getProfileStatusAC(date.data))
+            })
+        })
+    } else {
+        globalAPI.getProfileStatus(!urlID ? myID : urlID).then(date => {
+            if (!date.data) {
+                dispatch(getProfileStatusAC('No status!'))
+            } else {
+                dispatch(getProfileStatusAC(date.data))
+            }
         })
     }
 }

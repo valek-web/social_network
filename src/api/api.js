@@ -26,4 +26,7 @@ export const globalAPI = {
     setProfileMe() {
         return instance.get('auth/me').then(respons => respons.data)
     },
+    getProfileStatus(id) {
+        return instance.get(`profile/status/${id}`).then(respons => respons)
+    },
 }

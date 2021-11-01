@@ -7,7 +7,7 @@ import UsersConteiner from './component/Content/Users/UsersConteiner'
 import ArticleComponent from './component/Article/ArticleComponent'
 import Profile from './component/Content/Profile/Profile'
 import MenuConteiner from './component/Menu/MenuConteiner'
-
+import Login from './component/different/Login/Login'
 const App = props => {
     return (
         <div className='App'>
@@ -33,6 +33,7 @@ const App = props => {
                     )}
                 />
                 <Route path='/users' render={() => <UsersConteiner />} />
+                <Route path='/login' render={() => <Login />} />
             </div>
             <ArticleComponent />
         </div>

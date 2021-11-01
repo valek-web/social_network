@@ -1,11 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {
-    onFollowUnfollowUser,
-    onSetUsers,
-    onSetTotalCount,
-    onSetCurrentPage,
-    toggleFollowingProgress,
     setUsersThunkCreator,
     newPageThunkCreator,
     followThunkCreator,
@@ -14,7 +9,8 @@ import {
 import Users from './Users'
 import Preloader from '../../different/preloader/preloader'
 import load from './../../../img/load_book.gif'
-import { setLoader } from '../../../redux/reducer/different_reducer'
+import { AuthRedirect } from '../../hoc/AuthRedirect'
+import { compose } from 'redux'
 
 class UsersConteinerAPI extends React.Component {
     componentDidMount = () => {
@@ -30,6 +26,7 @@ class UsersConteinerAPI extends React.Component {
     }
 
     render = () => {
+        debugger
         return this.props.loader ? (
             <Preloader loading={load} />
         ) : (
@@ -54,20 +51,16 @@ let mapStateToProps = state => {
         users: state.usersPage.users,
         loader: state.differentPage.preloader,
         toggleFollowing: state.usersPage.toggleFollowing,
+        auth: state.differentPage.login,
     }
 }
 
-const UsersConteiner = connect(mapStateToProps, {
-    onFollowUnfollowUser,
-    onSetUsers,
-    onSetCurrentPage,
-    onSetTotalCount,
-    setLoader,
-    toggleFollowingProgress,
-    setUsersThunkCreator,
-    newPageThunkCreator,
-    followThunkCreator,
-    unfollowThunkCreator,
-})(UsersConteinerAPI)
-
-export default UsersConteiner
+export default compose(
+    connect(mapStateToProps, {
+        setUsersThunkCreator,
+        newPageThunkCreator,
+        followThunkCreator,
+        unfollowThunkCreator,
+    }),
+    AuthRedirect
+)(UsersConteinerAPI)
