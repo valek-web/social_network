@@ -43,9 +43,3 @@ export default compose(
     withRouter,
     AuthRedirect
 )(ProfileBlockConteinerAPI)
-
-// const ProfileBlockConteiner = connect(mapStateToProps, { getProfileInfo })(
-//     withRouter(AuthRedirect(ProfileBlockConteinerAPI))
-// )
-
-// export default ProfileBlockConteiner

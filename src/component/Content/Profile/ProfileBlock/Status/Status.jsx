@@ -9,11 +9,13 @@ class Status extends React.Component {
         }
     }
 
-    // componentDidMount = () => {
-    //     this.setState({
-    //         localStatus: this.props.status,
-    //     })
-    // }
+    componentDidUpdate = (prevProps, prevState) => {
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                localStatus: this.props.status,
+            })
+        }
+    }
 
     activeEditMode = () => {
         this.setState({
@@ -25,13 +27,17 @@ class Status extends React.Component {
         this.setState({
             editMode: false,
         })
-        this.props.onSetStatus(this.state.localStatus)
+        if (this.state.localStatus !== this.props.status) {
+            this.props.onSetStatus(this.state.localStatus)
+        }
     }
 
     onStatusChange = e => {
-        this.setState({
-            localStatus: e.currentTarget.value,
-        })
+        if (e.currentTarget.value !== this.state.localStatus) {
+            this.setState({
+                localStatus: e.currentTarget.value,
+            })
+        }
     }
 
     render = () => {

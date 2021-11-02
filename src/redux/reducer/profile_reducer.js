@@ -114,7 +114,6 @@ export const setStatus = newStatus => dispatch => {
         globalAPI.setStatus(newStatus).then(date => {
             if (date.data.resultCode === 0) {
                 dispatch(getProfileStatusAC(newStatus))
-                console.log(date)
             }
         })
     }

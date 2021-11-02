@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom'
 import w from './User.module.css'
 
 const User = props => {
-    debugger
     let followUn = props.onFollow ? 'Unfollow' : 'Follow'
 
     let followUnfollo = () => {
@@ -24,7 +23,7 @@ const User = props => {
                                 ? 'https://cdn.iconscout.com/icon/free/png-512/laptop-user-1-1179329.png'
                                 : props.onPhoto
                         }
-                        alt="#"
+                        alt='#'
                     />
                 </NavLink>
             </div>
