@@ -25,7 +25,7 @@ const ProfileBlock = props => {
                         ? 'Ищу работу'
                         : 'Не ищу'}
                 </p>
-                <Status status={props.status} />
+                <Status status={props.status} onSetStatus={props.setStatus} />
             </div>
         </div>
     )

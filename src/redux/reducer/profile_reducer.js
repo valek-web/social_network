@@ -75,6 +75,8 @@ let getProfileStatusAC = date => {
     return { type: GET_STATUS, date }
 }
 
+// thunk creator
+
 export const getProfileInfo = (urlID, myID) => dispatch => {
     if (!urlID && !myID) {
         globalAPI.setProfileMe().then(date => {
@@ -92,7 +94,6 @@ export const getProfileInfo = (urlID, myID) => dispatch => {
 export const getStatus = (urlID, myID) => dispatch => {
     if (!urlID && !myID) {
         globalAPI.setProfileMe().then(respons => {
-            debugger
             dispatch(setDate(respons))
             globalAPI.getProfileStatus(respons.data.id).then(date => {
                 dispatch(getProfileStatusAC(date.data))
@@ -104,6 +105,16 @@ export const getStatus = (urlID, myID) => dispatch => {
                 dispatch(getProfileStatusAC('No status!'))
             } else {
                 dispatch(getProfileStatusAC(date.data))
+            }
+        })
+    }
+}
+export const setStatus = newStatus => dispatch => {
+    if (!!newStatus) {
+        globalAPI.setStatus(newStatus).then(date => {
+            if (date.data.resultCode === 0) {
+                dispatch(getProfileStatusAC(newStatus))
+                console.log(date)
             }
         })
     }

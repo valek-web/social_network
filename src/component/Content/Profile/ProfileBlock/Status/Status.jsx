@@ -1,9 +1,19 @@
 import React from 'react'
 
 class Status extends React.Component {
-    state = {
-        editMode: false,
+    constructor(props) {
+        super(props)
+        this.state = {
+            editMode: false,
+            localStatus: !this.props.status ? 'No status' : this.props.status,
+        }
     }
+
+    // componentDidMount = () => {
+    //     this.setState({
+    //         localStatus: this.props.status,
+    //     })
+    // }
 
     activeEditMode = () => {
         this.setState({
@@ -15,21 +25,23 @@ class Status extends React.Component {
         this.setState({
             editMode: false,
         })
+        this.props.onSetStatus(this.state.localStatus)
     }
 
     onStatusChange = e => {
-        alert(e.currentTarget.value)
+        this.setState({
+            localStatus: e.currentTarget.value,
+        })
     }
 
     render = () => {
-        debugger
         return (
             <div>
                 {this.state.editMode ? (
                     <div>
                         <input
                             onChange={this.onStatusChange}
-                            value={this.props.status}
+                            value={this.state.localStatus}
                             onBlur={() => {
                                 this.deactiveEditMode()
                             }}

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import {
     getProfileInfo,
     getStatus,
+    setStatus,
 } from '../../../../redux/reducer/profile_reducer'
 import ProfileBlock from './ProfileBlock'
 import Preloader from '../../../different/preloader/preloader'
@@ -18,7 +19,7 @@ class ProfileBlockConteinerAPI extends React.Component {
     }
 
     render = () => {
-        return !this.props.boolProfile ? (
+        return !this.props.boolProfile || !this.props.status ? (
             <>{<Preloader loading={load} />}</>
         ) : (
             <ProfileBlock {...this.props} />
@@ -38,7 +39,7 @@ let mapStateToProps = state => {
 }
 
 export default compose(
-    connect(mapStateToProps, { getProfileInfo, getStatus }),
+    connect(mapStateToProps, { getProfileInfo, getStatus, setStatus }),
     withRouter,
     AuthRedirect
 )(ProfileBlockConteinerAPI)

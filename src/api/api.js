@@ -29,4 +29,9 @@ export const globalAPI = {
     getProfileStatus(id) {
         return instance.get(`profile/status/${id}`).then(respons => respons)
     },
+    setStatus(status) {
+        return instance
+            .put('profile/status', { status })
+            .then(respons => respons)
+    },
 }

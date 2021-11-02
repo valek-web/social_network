@@ -26,7 +26,6 @@ class UsersConteinerAPI extends React.Component {
     }
 
     render = () => {
-        debugger
         return this.props.loader ? (
             <Preloader loading={load} />
         ) : (
