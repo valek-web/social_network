@@ -1,4 +1,5 @@
 import React from 'react'
+import { Field, reduxForm } from 'redux-form'
 import Posts from './Post/Post'
 import q from './PostsBlock.module.css'
 
@@ -13,34 +14,26 @@ const PostsBlock = props => {
             />
         )
     })
-    const newP = React.createRef()
 
-    let addTextPost = () => {
-        props.addTextPost()
-    }
-    let updatePostChangeText = () => {
-        let text = newP.current.value
-        props.updatePostChangeText(text)
-    }
     return (
         <div>
-            <div className={q.box}>
+            <form onSubmit={props.handleSubmit} className={q.box}>
                 <div className={q.input}>
-                    <textarea
-                        onChange={updatePostChangeText}
-                        ref={newP}
+                    <Field
                         className={q.textarea}
                         value={props.newPostTexts}
-                        placeholder="New post!"
+                        placeholder='New post!'
+                        component='textarea'
+                        name='textPost'
                     />
                 </div>
                 <div className={q.buttons}>
-                    <button onClick={addTextPost}>Add post</button>
+                    <button>Add post</button>
                 </div>
-            </div>
+            </form>
             <div className={q.scrool}>{mapPosts}</div>
         </div>
     )
 }
 
-export default PostsBlock
+export default reduxForm({ form: 'post' })(PostsBlock)

@@ -1,14 +1,12 @@
 import { globalAPI } from '../../api/api'
 import { setDate } from './different_reducer'
 
-const UPDATE_TEXT = 'UPDATE_TEXT'
 const ADD_POST = 'ADD_POST'
 const SET_PROFILE = 'SET_PROFILE'
 const GET_STATUS = 'GET_STATUS'
 
 let initialState = {
     profile: null,
-    status: null,
     boolDate: false,
     post: [
         { message: 'New post!', like: 2, id: 0 },
@@ -16,7 +14,6 @@ let initialState = {
         { message: "I'm learn Python!", like: 33, id: 2 },
         { message: 'I want programmes!', like: 15, id: 3 },
     ],
-    newPostText: '',
 }
 
 export const profile_reducer = (state = initialState, action) => {
@@ -27,18 +24,12 @@ export const profile_reducer = (state = initialState, action) => {
                 post: [
                     ...state.post,
                     {
-                        message: state.newPostText,
+                        message: action.text,
                         like: 0,
                         id: { ...(state.post[state.post.length - 1].id + 1) },
                     },
                 ],
                 newPostText: '',
-            }
-        }
-        case UPDATE_TEXT: {
-            return {
-                ...state,
-                newPostText: action.newText,
             }
         }
         case SET_PROFILE: {
@@ -61,11 +52,8 @@ export const profile_reducer = (state = initialState, action) => {
 
 // action Creator
 
-export let actionUpdate = text => {
-    return { type: UPDATE_TEXT, newText: text }
-}
-export let actionAddPost = () => {
-    return { type: ADD_POST }
+export let actionAddPost = text => {
+    return { type: ADD_POST, text }
 }
 let setProfileInfo = date => {
     return { type: SET_PROFILE, date }

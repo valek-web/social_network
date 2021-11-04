@@ -20,3 +20,9 @@
 .info {
     width: 73%;
 }
+
+.button {
+    display: block;
+    margin: 10px;
+    float: right;
+}

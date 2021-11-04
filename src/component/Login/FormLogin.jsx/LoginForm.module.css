@@ -1,0 +1,10 @@
+.btn_box {
+    margin: 0 auto;
+    width: 18%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.boxForm input {
+    margin: 5px;
+}

@@ -34,4 +34,14 @@ export const globalAPI = {
             .put('profile/status', { status })
             .then(respons => respons)
     },
+    login(email, password, rememberMe, captcha) {
+        return instance
+            .post('auth/login', { email, password, rememberMe, captcha })
+            .then(respons => respons.data)
+    },
+    logOut() {
+        return instance
+            .delete('auth/login')
+            .then(respons => console.log(respons))
+    },
 }

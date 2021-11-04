@@ -1,11 +1,19 @@
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import {
-    actionNewMessagesClick,
-    actionUpdateMessage,
-} from '../../../../redux/reducer/dialogs_reducer'
+import { actionNewMessagesClick } from '../../../../redux/reducer/dialogs_reducer'
 import { AuthRedirect } from '../../../hoc/AuthRedirect'
 import MessagesBlock from './MessagesBlock'
+import React from 'react'
+
+class MessagesBlockContainer extends React.Component {
+    addMessage = value => {
+        this.props.addMessage(value.newMessage)
+    }
+
+    render = () => {
+        return <MessagesBlock {...this.props} onAddMessage={this.addMessage} />
+    }
+}
 
 let mapStateToProps = state => {
     return {
@@ -17,11 +25,8 @@ let mapStateToProps = state => {
 
 let mapDispacthToProps = dispatch => {
     return {
-        updateTextarea: text => {
-            dispatch(actionUpdateMessage(text))
-        },
-        addMessage: () => {
-            dispatch(actionNewMessagesClick())
+        addMessage: value => {
+            dispatch(actionNewMessagesClick(value))
         },
     }
 }
@@ -29,4 +34,4 @@ let mapDispacthToProps = dispatch => {
 export default compose(
     connect(mapStateToProps, mapDispacthToProps),
     AuthRedirect
-)(MessagesBlock)
+)(MessagesBlockContainer)

@@ -1,9 +1,17 @@
+import React from 'react'
 import { connect } from 'react-redux'
-import {
-    actionAddPost,
-    actionUpdate,
-} from '../../../../redux/reducer/profile_reducer'
+import { actionAddPost } from '../../../../redux/reducer/profile_reducer'
 import PostsBlock from './PostsBlock'
+
+class PostsConteiner extends React.Component {
+    addTextPost = text => {
+        this.props.addTextPost(text.textPost)
+    }
+
+    render = () => {
+        return <PostsBlock onSubmit={this.addTextPost} {...this.props} />
+    }
+}
 
 let mapStateToProps = state => {
     return {
@@ -15,18 +23,10 @@ let mapStateToProps = state => {
 
 let mapDispatchToProps = dispatch => {
     return {
-        updatePostChangeText: text => {
-            dispatch(actionUpdate(text))
-        },
-        addTextPost: () => {
-            dispatch(actionAddPost())
+        addTextPost: text => {
+            dispatch(actionAddPost(text))
         },
     }
 }
 
-const NewPostsConteiner = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(PostsBlock)
-
-export default NewPostsConteiner
+export default connect(mapStateToProps, mapDispatchToProps)(PostsConteiner)

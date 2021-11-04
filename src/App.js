@@ -7,7 +7,7 @@ import UsersConteiner from './component/Content/Users/UsersConteiner'
 import ArticleComponent from './component/Article/ArticleComponent'
 import Profile from './component/Content/Profile/Profile'
 import MenuConteiner from './component/Menu/MenuConteiner'
-import Login from './component/different/Login/Login'
+import Login from './component/Login/Login'
 const App = props => {
     return (
         <div className='App'>

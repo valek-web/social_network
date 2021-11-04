@@ -5,6 +5,7 @@ import {
     getStatus,
     setStatus,
 } from '../../../../redux/reducer/profile_reducer'
+import { logOutTC } from '../../../../redux/reducer/different_reducer'
 import ProfileBlock from './ProfileBlock'
 import Preloader from '../../../different/preloader/preloader'
 import load from './../../../../img/load_book.gif'
@@ -39,7 +40,12 @@ let mapStateToProps = state => {
 }
 
 export default compose(
-    connect(mapStateToProps, { getProfileInfo, getStatus, setStatus }),
+    connect(mapStateToProps, {
+        getProfileInfo,
+        getStatus,
+        setStatus,
+        logOutTC,
+    }),
     withRouter,
     AuthRedirect
 )(ProfileBlockConteinerAPI)
