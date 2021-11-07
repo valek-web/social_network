@@ -2,9 +2,8 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import './App.css'
 import Messages from './component/Content/Messages/Messages'
-import BooksConteiner from './component/Content/books/booksConteiner'
 import UsersConteiner from './component/Content/Users/UsersConteiner'
-import ArticleComponent from './component/Article/ArticleComponent'
+import Article from './component/Article/Article'
 import Profile from './component/Content/Profile/Profile'
 import MenuConteiner from './component/Menu/MenuConteiner'
 import Login from './component/Login/Login'
@@ -23,19 +22,10 @@ const App = props => {
                         />
                     )}
                 />
-                <Route
-                    path='/books'
-                    render={() => (
-                        <BooksConteiner
-                            stateBooks={props.state}
-                            dispatch={props.dispatch}
-                        />
-                    )}
-                />
                 <Route path='/users' render={() => <UsersConteiner />} />
                 <Route path='/login' render={() => <Login />} />
             </div>
-            <ArticleComponent />
+            <Article />
         </div>
     )
 }

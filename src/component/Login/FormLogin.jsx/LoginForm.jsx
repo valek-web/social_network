@@ -1,5 +1,7 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
+import { requiered } from '../../../validate/validateForms'
+import Texterea from '../../different/Texterea/Texterea'
 import style from './LoginForm.module.css'
 
 const LoginForm = props => {
@@ -9,16 +11,18 @@ const LoginForm = props => {
                 <Field
                     name='email'
                     type='email'
-                    component='input'
+                    component={Texterea}
                     placeholder='Login'
+                    validate={requiered}
                 />
             </div>
             <div>
                 <Field
                     name='password'
                     type='password'
-                    component='input'
+                    component={Texterea}
                     placeholder='Password'
+                    validate={requiered}
                 />
             </div>
             <div>

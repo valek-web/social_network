@@ -14,7 +14,6 @@ const PostsBlock = props => {
             />
         )
     })
-
     return (
         <div>
             <form onSubmit={props.handleSubmit} className={q.box}>

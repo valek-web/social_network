@@ -10,6 +10,7 @@ let initialState = {
     myDate: null,
     login: false,
     myID: null,
+    loading: false,
 }
 
 export const different_reducer = (state = initialState, action) => {
@@ -25,6 +26,7 @@ export const different_reducer = (state = initialState, action) => {
                 myDate: action.date.data,
                 login: !action.date.resultCode,
                 myID: action.date.data.id,
+                loading: true,
             }
         case DELETE_MY_DATE:
             return {
