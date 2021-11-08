@@ -4,6 +4,7 @@ import { stopSubmit } from 'redux-form'
 const LOADER = 'LOADER'
 const SET_MY_DATE = 'SET_MY_DATE'
 const DELETE_MY_DATE = 'DELETE_MY_DATE'
+const INITIALIZE = 'INITIALIZE'
 
 let initialState = {
     imgAva: 'https://i.pinimg.com/originals/0c/a9/e2/0ca9e28dcb12dc698cfd2beda6d6fa64.jpg',
@@ -12,6 +13,7 @@ let initialState = {
     login: false,
     myID: null,
     loading: false,
+    inizialization: false,
 }
 
 export const different_reducer = (state = initialState, action) => {
@@ -35,6 +37,11 @@ export const different_reducer = (state = initialState, action) => {
                 myDate: null,
                 login: false,
                 myID: null,
+            }
+        case INITIALIZE:
+            return {
+                ...state,
+                inizialization: true,
             }
         default:
             return state
@@ -63,10 +70,16 @@ const deleteDate = () => {
     }
 }
 
+const inizializationAC = () => {
+    return {
+        type: INITIALIZE,
+    }
+}
+
 // TC
 
 export const setProfileInfoMe = () => dispatch => {
-    globalAPI.setProfileMe().then(date => {
+    return globalAPI.setProfileMe().then(date => {
         dispatch(setDate(date))
     })
 }
@@ -85,4 +98,10 @@ export const setLogin = (email, password, rememberMe, captcha) => dispatch => {
 
 export const logOutTC = () => dispatch => {
     globalAPI.logOut().then(date => dispatch(deleteDate()))
+}
+
+export const inizializationTC = () => dispatch => {
+    dispatch(setProfileInfoMe()).then(() => {
+        dispatch(inizializationAC())
+    })
 }

@@ -7,27 +7,45 @@ import Article from './component/Article/Article'
 import Profile from './component/Content/Profile/Profile'
 import MenuConteiner from './component/Menu/MenuConteiner'
 import Login from './component/Login/Login'
-const App = props => {
-    return (
-        <div className='App'>
-            <MenuConteiner />
-            <div className='cont'>
-                <Route path='/profile/:id?' render={() => <Profile />} />
-                <Route
-                    path='/messages:id?'
-                    render={() => (
-                        <Messages
-                            stateMessages={props.state}
-                            dispatch={props.dispatch}
-                        />
-                    )}
-                />
-                <Route path='/users' render={() => <UsersConteiner />} />
-                <Route path='/login' render={() => <Login />} />
+import { connect } from 'react-redux'
+import { inizializationTC } from './redux/reducer/different_reducer'
+import { withRouter } from 'react-router'
+import Preloader from './component/different/preloader/preloader'
+import loan from './img/load_book.gif'
+
+class App extends React.Component {
+    componentDidMount = () => {
+        this.props.inizializationTC()
+    }
+    render = () => {
+        return !this.props.inizialize ? (
+            <Preloader loading={loan} />
+        ) : (
+            <div className='App'>
+                <MenuConteiner />
+                <div className='cont'>
+                    <Route path='/profile/:id?' render={() => <Profile />} />
+                    <Route
+                        path='/messages:id?'
+                        render={() => (
+                            <Messages
+                                stateMessages={this.props.state}
+                                dispatch={this.props.dispatch}
+                            />
+                        )}
+                    />
+                    <Route path='/users' render={() => <UsersConteiner />} />
+                    <Route path='/login' render={() => <Login />} />
+                </div>
+                <Article />
             </div>
-            <Article />
-        </div>
-    )
+        )
+    }
+}
+let mapStateToProps = state => {
+    return {
+        inizialize: state.differentPage.inizialization,
+    }
 }
 
-export default App
+export default withRouter(connect(mapStateToProps, { inizializationTC })(App))
