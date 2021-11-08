@@ -20,7 +20,7 @@ class ProfileBlockConteinerAPI extends React.Component {
     }
 
     render = () => {
-        return !this.props.boolProfile || !this.props.status ? (
+        return !this.props.boolProfile /* || !this.props.status*/ ? (
             <>{<Preloader loading={load} />}</>
         ) : (
             <ProfileBlock {...this.props} />
