@@ -8,3 +8,8 @@
 .boxForm input {
     margin: 5px;
 }
+
+.errorBox {
+    color: red;
+    padding: 15px;
+}

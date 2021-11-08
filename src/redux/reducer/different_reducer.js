@@ -1,4 +1,5 @@
 import { globalAPI } from '../../api/api'
+import { stopSubmit } from 'redux-form'
 
 const LOADER = 'LOADER'
 const SET_MY_DATE = 'SET_MY_DATE'
@@ -72,10 +73,13 @@ export const setProfileInfoMe = () => dispatch => {
 
 export const setLogin = (email, password, rememberMe, captcha) => dispatch => {
     globalAPI.login(email, password, rememberMe, captcha).then(date => {
-        console.log(date)
-        globalAPI.setProfileMe().then(date => {
-            dispatch(setDate(date))
-        })
+        if (date.resultCode === 0) {
+            globalAPI.setProfileMe().then(date => {
+                dispatch(setDate(date))
+            })
+        } else {
+            dispatch(stopSubmit('login', { _error: date.messages[0] }))
+        }
     })
 }
 
