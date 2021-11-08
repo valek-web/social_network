@@ -4,6 +4,11 @@ import { actionNewMessagesClick } from '../../../../redux/reducer/dialogs_reduce
 import { AuthRedirect } from '../../../hoc/AuthRedirect'
 import MessagesBlock from './MessagesBlock'
 import React from 'react'
+import {
+    getLogin,
+    getMessageText,
+    getTextNewMessage,
+} from '../../../../redux/selects'
 
 class MessagesBlockContainer extends React.Component {
     addMessage = value => {
@@ -17,9 +22,9 @@ class MessagesBlockContainer extends React.Component {
 
 let mapStateToProps = state => {
     return {
-        messageMap: state.messagesPage.messageText,
-        textValue: state.messagesPage.textNewMessage,
-        auth: state.differentPage.login,
+        messageMap: getMessageText(state),
+        textValue: getTextNewMessage(state),
+        auth: getLogin(state),
     }
 }
 
