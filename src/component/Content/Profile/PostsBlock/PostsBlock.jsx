@@ -16,6 +16,7 @@ const PostsBlock = props => {
     })
     return (
         <div>
+            {!props.error ? '' : <div className={q.error}>{props.error}</div>}
             <form onSubmit={props.handleSubmit} className={q.box}>
                 <div className={q.input}>
                     <Field
@@ -24,6 +25,7 @@ const PostsBlock = props => {
                         placeholder='New post!'
                         component='textarea'
                         name='textPost'
+                        onChange={props.deleteErrorChange}
                     />
                 </div>
                 <div className={q.buttons}>

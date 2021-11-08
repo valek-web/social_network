@@ -53,3 +53,8 @@
     height: 42vh;
     overflow-y: auto;
 }
+
+.error {
+    color: red;
+    margin: 15px;
+}

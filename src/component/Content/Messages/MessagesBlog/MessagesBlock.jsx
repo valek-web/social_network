@@ -10,7 +10,10 @@ const MessagesBlock = props => {
                 <MessagesText message={props.messageMap} />
             </div>
             <div className={w.new_message}>
-                <NewMessage onSubmit={props.onAddMessage} />
+                <NewMessage
+                    onSubmit={props.onAddMessage}
+                    deleteError={props.deleteErrorChange}
+                />
             </div>
         </div>
     )

@@ -1,3 +1,5 @@
+import { stopSubmit } from 'redux-form'
+
 const ADD_MESSAGES = 'ADD_MESSAGES'
 
 let initialState = {
@@ -36,9 +38,25 @@ export const dialogs_reducer = (state = initialState, action) => {
     }
 }
 
-export let actionNewMessagesClick = text => {
+// AC
+
+let actionNewMessagesClick = text => {
     return {
         type: ADD_MESSAGES,
         text,
     }
+}
+
+// TC
+
+export const addMessagesTC = text => dispatch => {
+    if (!text) {
+        dispatch(stopSubmit('message', { _error: 'Unable to send empty post' }))
+    } else {
+        dispatch(actionNewMessagesClick(text))
+    }
+}
+
+export const deleteErrorTC = () => dispatch => {
+    dispatch(stopSubmit('message', { _error: null }))
 }

@@ -1,3 +1,4 @@
+import { stopSubmit } from 'redux-form'
 import { globalAPI } from '../../api/api'
 import { setDate } from './different_reducer'
 
@@ -52,7 +53,7 @@ export const profile_reducer = (state = initialState, action) => {
 
 // action Creator
 
-export let actionAddPost = text => {
+export let addPostAC = text => {
     return { type: ADD_POST, text }
 }
 let setProfileInfo = date => {
@@ -105,4 +106,15 @@ export const setStatus = newStatus => dispatch => {
             }
         })
     }
+}
+export const addTextPost = textPost => dispatch => {
+    if (!textPost) {
+        dispatch(stopSubmit('post', { _error: 'Unable to create empty post' }))
+    } else {
+        dispatch(addPostAC(textPost))
+    }
+}
+
+export const deleteErrorChange = () => dispatch => {
+    dispatch(stopSubmit('post', { _error: null }))
 }
