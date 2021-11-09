@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import w from './User.module.css'
 
-const User = props => {
+const User = React.memo(props => {
     let followUn = props.onFollow ? 'Unfollow' : 'Follow'
 
     let followUnfollo = () => {
@@ -39,6 +39,6 @@ const User = props => {
             </div>
         </div>
     )
-}
+})
 
 export default User

@@ -13,7 +13,7 @@ import { withRouter } from 'react-router-dom'
 import { AuthRedirect } from '../../../hoc/AuthRedirect'
 import { compose } from 'redux'
 
-class ProfileBlockConteinerAPI extends React.Component {
+class ProfileBlockConteinerAPI extends React.PureComponent {
     componentDidMount = () => {
         this.props.getProfileInfo(this.props.match.params.id, this.props.onMyID)
         this.props.getStatus(this.props.match.params.id, this.props.onMyID)

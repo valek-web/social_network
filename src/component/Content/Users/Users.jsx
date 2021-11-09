@@ -2,7 +2,7 @@ import React from 'react'
 import User from './User/User'
 import s from './Users.module.css'
 
-const Users = props => {
+const Users = React.memo(props => {
     let onMaxPage = () => {
         return Math.ceil(props.onTotalUsersCount / props.onPageSize)
     }
@@ -60,6 +60,6 @@ const Users = props => {
             <div className={s.box}>{mapUser}</div>
         </div>
     )
-}
+})
 
 export default Users

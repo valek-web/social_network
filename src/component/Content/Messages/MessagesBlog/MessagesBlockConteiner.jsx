@@ -13,7 +13,7 @@ import {
     getTextNewMessage,
 } from '../../../../redux/selects'
 
-class MessagesBlockContainer extends React.Component {
+class MessagesBlockContainer extends React.PureComponent {
     addMessage = value => {
         this.props.addMessagesTC(value.newMessage)
     }

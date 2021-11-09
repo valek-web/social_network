@@ -3,7 +3,7 @@ import w from './Messages.module.css'
 import NameFrends from './NameFrends/NameFrends'
 import MessagesBlockConteiner from './MessagesBlog/MessagesBlockConteiner'
 
-const Messages = props => {
+const Messages = React.memo(props => {
     return (
         <div className={w.box}>
             <div className={w.nameFrends}>
@@ -14,6 +14,6 @@ const Messages = props => {
             </div>
         </div>
     )
-}
+})
 
 export default Messages

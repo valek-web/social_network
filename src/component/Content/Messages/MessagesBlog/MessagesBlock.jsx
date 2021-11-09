@@ -3,7 +3,7 @@ import w from './MessagesBlock.module.css'
 import MessagesText from './MessageText/MessageText'
 import NewMessage from './NewMessage/NewMessage'
 
-const MessagesBlock = props => {
+const MessagesBlock = React.memo(props => {
     return (
         <div>
             <div className={w.box_message}>
@@ -17,6 +17,6 @@ const MessagesBlock = props => {
             </div>
         </div>
     )
-}
+})
 
 export default MessagesBlock

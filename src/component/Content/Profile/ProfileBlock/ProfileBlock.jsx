@@ -2,7 +2,7 @@ import React from 'react'
 import w from './ProfileBlock.module.css'
 import Status from './Status/Status'
 
-const ProfileBlock = props => {
+const ProfileBlock = React.memo(props => {
     return (
         <>
             <button onClick={props.logOutTC} className={w.button}>
@@ -39,6 +39,6 @@ const ProfileBlock = props => {
             </div>
         </>
     )
-}
+})
 
 export default ProfileBlock

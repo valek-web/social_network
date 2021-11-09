@@ -2,7 +2,7 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import w from './NewMessage.module.css'
 
-const NewMessage = props => {
+const NewMessage = React.memo(props => {
     return (
         <div>
             {!props.error ? '' : <div className={w.error}>{props.error}</div>}
@@ -20,6 +20,6 @@ const NewMessage = props => {
             </form>
         </div>
     )
-}
+})
 
 export default reduxForm({ form: 'message' })(NewMessage)

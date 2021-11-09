@@ -12,7 +12,7 @@ import load from './../../../img/load_book.gif'
 import { AuthRedirect } from '../../hoc/AuthRedirect'
 import { compose } from 'redux'
 
-class UsersConteinerAPI extends React.Component {
+class UsersConteinerAPI extends React.PureComponent {
     componentDidMount = () => {
         this.props.setUsersThunkCreator(
             this.props.users.length,
