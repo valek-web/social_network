@@ -1,13 +1,13 @@
 import React from 'react'
-import { setLogin } from '../../redux/reducer/different_reducer'
+import { setLoginTC } from '../../redux/reducer/different_reducer'
 import LoginForm from './FormLogin.jsx/LoginForm'
 import style from './Login.module.css'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 
-class Login extends React.Component {
+class Login extends React.PureComponent {
     submitForm = formDate => {
-        this.props.setLogin(
+        this.props.setLoginTC(
             formDate.email,
             formDate.password,
             formDate.rememberMe,
@@ -33,4 +33,4 @@ let mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { setLogin })(Login)
+export default connect(mapStateToProps, { setLoginTC })(Login)

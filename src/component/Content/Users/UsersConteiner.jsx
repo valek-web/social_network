@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {
-    setUsersThunkCreator,
-    newPageThunkCreator,
-    followThunkCreator,
-    unfollowThunkCreator,
+    setUsersTC,
+    newPageTC,
+    followTC,
+    unfollowTC,
 } from '../../../redux/reducer/users_reduser'
 import Users from './Users'
 import Preloader from '../../different/preloader/preloader'
@@ -14,7 +14,7 @@ import { compose } from 'redux'
 
 class UsersConteinerAPI extends React.PureComponent {
     componentDidMount = () => {
-        this.props.setUsersThunkCreator(
+        this.props.setUsersTC(
             this.props.users.length,
             this.props.pageSize,
             this.props.currentPage
@@ -22,7 +22,7 @@ class UsersConteinerAPI extends React.PureComponent {
     }
 
     onPageClick = (bool, onMaxPage, pageNum = this.props.currentPage) => {
-        this.props.newPageThunkCreator(bool, onMaxPage, pageNum)
+        this.props.newPageTC(bool, onMaxPage, pageNum)
     }
 
     render = () => {
@@ -56,10 +56,10 @@ let mapStateToProps = state => {
 
 export default compose(
     connect(mapStateToProps, {
-        setUsersThunkCreator,
-        newPageThunkCreator,
-        followThunkCreator,
-        unfollowThunkCreator,
+        setUsersTC,
+        newPageTC,
+        followTC,
+        unfollowTC,
     }),
     AuthRedirect
 )(UsersConteinerAPI)

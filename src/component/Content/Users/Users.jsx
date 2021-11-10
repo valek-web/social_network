@@ -23,8 +23,8 @@ const Users = React.memo(props => {
                 following={props.toggleFollowing}
                 key={i.id}
                 onToggleFollowingProgress={props.toggleFollowingProgress}
-                onFollowOn={props.followThunkCreator}
-                onUnfollowOn={props.unfollowThunkCreator}
+                onFollowOn={props.followTC}
+                onUnfollowOn={props.unfollowTC}
             />
         )
     })

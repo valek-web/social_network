@@ -1,10 +1,10 @@
 import { globalAPI } from '../../api/api'
 import { stopSubmit } from 'redux-form'
 
-const LOADER = 'LOADER'
-const SET_MY_DATE = 'SET_MY_DATE'
-const DELETE_MY_DATE = 'DELETE_MY_DATE'
-const INITIALIZE = 'INITIALIZE'
+const LOADER = 'social-network/different/LOADER'
+const SET_MY_DATE = 'social-network/different/SET_MY_DATE'
+const DELETE_MY_DATE = 'social-network/different/DELETE_MY_DATE'
+const INITIALIZE = 'social-network/different/INITIALIZE'
 
 let initialState = {
     imgAva: 'https://i.pinimg.com/originals/0c/a9/e2/0ca9e28dcb12dc698cfd2beda6d6fa64.jpg',
@@ -48,23 +48,23 @@ export const different_reducer = (state = initialState, action) => {
     }
 }
 
-//AC
+//Action Creator
 
-export const setLoader = newBool => {
+export const setLoaderAC = newBool => {
     return {
         type: LOADER,
         newBool,
     }
 }
 
-export const setDate = date => {
+export const setDateAC = date => {
     return {
         type: SET_MY_DATE,
         date,
     }
 }
 
-const deleteDate = () => {
+const deleteDateAC = () => {
     return {
         type: DELETE_MY_DATE,
     }
@@ -76,32 +76,33 @@ const inizializationAC = () => {
     }
 }
 
-// TC
+// ThunkCreator
 
-export const setProfileInfoMe = () => dispatch => {
+export const setProfileInfoMeTC = () => dispatch => {
     return globalAPI.setProfileMe().then(date => {
-        dispatch(setDate(date))
+        dispatch(setDateAC(date))
     })
 }
 
-export const setLogin = (email, password, rememberMe, captcha) => dispatch => {
-    globalAPI.login(email, password, rememberMe, captcha).then(date => {
-        if (date.resultCode === 0) {
-            globalAPI.setProfileMe().then(date => {
-                dispatch(setDate(date))
-            })
-        } else {
-            dispatch(stopSubmit('login', { _error: date.messages[0] }))
-        }
-    })
-}
+export const setLoginTC =
+    (email, password, rememberMe, captcha) => dispatch => {
+        globalAPI.login(email, password, rememberMe, captcha).then(date => {
+            if (date.resultCode === 0) {
+                globalAPI.setProfileMe().then(date => {
+                    dispatch(setDateAC(date))
+                })
+            } else {
+                dispatch(stopSubmit('login', { _error: date.messages[0] }))
+            }
+        })
+    }
 
 export const logOutTC = () => dispatch => {
-    globalAPI.logOut().then(date => dispatch(deleteDate()))
+    globalAPI.logOut().then(date => dispatch(deleteDateAC()))
 }
 
 export const inizializationTC = () => dispatch => {
-    dispatch(setProfileInfoMe()).then(() => {
+    dispatch(setProfileInfoMeTC()).then(() => {
         dispatch(inizializationAC())
     })
 }

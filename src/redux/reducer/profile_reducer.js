@@ -1,10 +1,10 @@
 import { stopSubmit } from 'redux-form'
 import { globalAPI } from '../../api/api'
-import { setDate } from './different_reducer'
+import { setDateAC } from './different_reducer'
 
-const ADD_POST = 'ADD_POST'
-const SET_PROFILE = 'SET_PROFILE'
-const GET_STATUS = 'GET_STATUS'
+const ADD_POST = 'social-network/profile/ADD_POST'
+const SET_PROFILE = 'social-network/profile/SET_PROFILE'
+const GET_STATUS = 'social-network/profile/GET_STATUS'
 
 let initialState = {
     profile: null,
@@ -53,10 +53,10 @@ export const profile_reducer = (state = initialState, action) => {
 
 // action Creator
 
-export let addPostAC = text => {
+let addPostAC = text => {
     return { type: ADD_POST, text }
 }
-let setProfileInfo = date => {
+let setProfileInfoAC = date => {
     return { type: SET_PROFILE, date }
 }
 
@@ -66,24 +66,24 @@ let getProfileStatusAC = date => {
 
 // thunk creator
 
-export const getProfileInfo = (urlID, myID) => dispatch => {
+export const getProfileInfoTC = (urlID, myID) => dispatch => {
     if (!urlID && !myID) {
         globalAPI.setProfileMe().then(date => {
-            dispatch(setDate(date))
+            dispatch(setDateAC(date))
             globalAPI.profileInfo(date.data.id).then(data => {
-                dispatch(setProfileInfo(data))
+                dispatch(setProfileInfoAC(data))
             })
         })
     } else {
         globalAPI.profileInfo(!urlID ? myID : urlID).then(data => {
-            dispatch(setProfileInfo(data))
+            dispatch(setProfileInfoAC(data))
         })
     }
 }
-export const getStatus = (urlID, myID) => dispatch => {
+export const getStatusTC = (urlID, myID) => dispatch => {
     if (!urlID && !myID) {
         globalAPI.setProfileMe().then(respons => {
-            dispatch(setDate(respons))
+            dispatch(setDateAC(respons))
             globalAPI.getProfileStatus(respons.data.id).then(date => {
                 dispatch(getProfileStatusAC(date.data))
             })
@@ -98,7 +98,7 @@ export const getStatus = (urlID, myID) => dispatch => {
         })
     }
 }
-export const setStatus = newStatus => dispatch => {
+export const setStatusTC = newStatus => dispatch => {
     if (!!newStatus) {
         globalAPI.setStatus(newStatus).then(date => {
             if (date.data.resultCode === 0) {
@@ -107,7 +107,7 @@ export const setStatus = newStatus => dispatch => {
         })
     }
 }
-export const addTextPost = textPost => dispatch => {
+export const addTextPostTC = textPost => dispatch => {
     if (!textPost) {
         dispatch(stopSubmit('post', { _error: 'Unable to create empty post' }))
     } else {
@@ -115,6 +115,6 @@ export const addTextPost = textPost => dispatch => {
     }
 }
 
-export const deleteErrorChange = () => dispatch => {
+export const deleteErrorChangeTC = () => dispatch => {
     dispatch(stopSubmit('post', { _error: null }))
 }

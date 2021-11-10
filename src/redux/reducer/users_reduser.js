@@ -1,11 +1,11 @@
 import { globalAPI } from '../../api/api'
-import { setLoader } from './different_reducer'
+import { setLoaderAC } from './different_reducer'
 
-const FOLLOW_USER = 'FOLLOW_USER'
-const SET_USER = 'GET_USER'
-const TOTAL_COUNT = 'TOTAL_COUNT'
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
-const SET_TOGGLE_FOLLOWING = 'SET_TOGGLE_FOLLOWING'
+const FOLLOW_USER = 'social-network/users/FOLLOW_USER'
+const SET_USER = 'social-network/users/GET_USER'
+const TOTAL_COUNT = 'social-network/users/TOTAL_COUNT'
+const SET_CURRENT_PAGE = 'social-network/users/SET_CURRENT_PAGE'
+const SET_TOGGLE_FOLLOWING = 'social-network/users/SET_TOGGLE_FOLLOWING'
 
 let initionState = {
     users: [],
@@ -57,15 +57,17 @@ export const users_reduser = (state = initionState, action) => {
     }
 }
 
-export let onFollowUnfollowUser = id => {
+// ActionCreator
+
+export let onFollowUnfollowUserAC = id => {
     return { type: FOLLOW_USER, id }
 }
 
-export let onSetUsers = newUsers => {
+export let onSetUsersAC = newUsers => {
     return { type: SET_USER, newUsers }
 }
 
-export let onSetTotalCount = totalCountNumber => {
+export let onSetTotalCountAC = totalCountNumber => {
     return { type: TOTAL_COUNT, value: totalCountNumber }
 }
 
@@ -76,7 +78,7 @@ export let onSetCurrentPage = current => {
     }
 }
 
-export let toggleFollowingProgress = (followID, boolFollowing) => {
+export let toggleFollowingProgressAC = (followID, boolFollowing) => {
     return {
         type: SET_TOGGLE_FOLLOWING,
         followID,
@@ -84,20 +86,22 @@ export let toggleFollowingProgress = (followID, boolFollowing) => {
     }
 }
 
-export const setUsersThunkCreator = (usersLength, pageSize, currentPage) => {
+// ThunkCreator
+
+export const setUsersTC = (usersLength, pageSize, currentPage) => {
     return dispatch => {
         if (usersLength === 0) {
-            dispatch(setLoader(true))
+            dispatch(setLoaderAC(true))
             globalAPI.getUsers(pageSize, currentPage).then(data => {
-                dispatch(setLoader(false))
-                dispatch(onSetTotalCount(data.totalCount))
-                dispatch(onSetUsers(data.items))
+                dispatch(setLoaderAC(false))
+                dispatch(onSetTotalCountAC(data.totalCount))
+                dispatch(onSetUsersAC(data.items))
             })
         }
     }
 }
 
-export const newPageThunkCreator = (bool, onMaxPage, pageNum) => {
+export const newPageTC = (bool, onMaxPage, pageNum) => {
     let currentPageNum = bool
         ? pageNum === onMaxPage()
             ? pageNum
@@ -107,33 +111,33 @@ export const newPageThunkCreator = (bool, onMaxPage, pageNum) => {
         : pageNum - 1
     return dispatch => {
         dispatch(onSetCurrentPage(currentPageNum))
-        dispatch(setLoader(true))
+        dispatch(setLoaderAC(true))
         globalAPI.getUsers(initionState.pageSize, currentPageNum).then(data => {
-            dispatch(setLoader(false))
-            dispatch(onSetUsers(data.items))
+            dispatch(setLoaderAC(false))
+            dispatch(onSetUsersAC(data.items))
         })
     }
 }
 
-export const followThunkCreator = onID => {
+export const followTC = onID => {
     return dispatch => {
-        dispatch(toggleFollowingProgress(onID, true))
+        dispatch(toggleFollowingProgressAC(onID, true))
         globalAPI.follow(onID).then(date => {
             if (date.resultCode === 0) {
-                dispatch(onFollowUnfollowUser(onID))
-                dispatch(toggleFollowingProgress(onID, false))
+                dispatch(onFollowUnfollowUserAC(onID))
+                dispatch(toggleFollowingProgressAC(onID, false))
             }
         })
     }
 }
 
-export const unfollowThunkCreator = onID => {
+export const unfollowTC = onID => {
     return dispatch => {
-        dispatch(toggleFollowingProgress(onID, true))
+        dispatch(toggleFollowingProgressAC(onID, true))
         globalAPI.unfollow(onID).then(date => {
             if (date.resultCode === 0) {
-                dispatch(onFollowUnfollowUser(onID))
-                dispatch(toggleFollowingProgress(onID, false))
+                dispatch(onFollowUnfollowUserAC(onID))
+                dispatch(toggleFollowingProgressAC(onID, false))
             }
         })
     }

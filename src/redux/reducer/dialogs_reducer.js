@@ -1,6 +1,6 @@
 import { stopSubmit } from 'redux-form'
 
-const ADD_MESSAGES = 'ADD_MESSAGES'
+const ADD_MESSAGES = 'social-network/dialogs/ADD_MESSAGES'
 
 let initialState = {
     userNameMessage: [
@@ -38,22 +38,22 @@ export const dialogs_reducer = (state = initialState, action) => {
     }
 }
 
-// AC
+// Action Creator
 
-let actionNewMessagesClick = text => {
+let actionNewMessagesClickAC = text => {
     return {
         type: ADD_MESSAGES,
         text,
     }
 }
 
-// TC
+// Thunk Creator
 
 export const addMessagesTC = text => dispatch => {
     if (!text) {
         dispatch(stopSubmit('message', { _error: 'Unable to send empty post' }))
     } else {
-        dispatch(actionNewMessagesClick(text))
+        dispatch(actionNewMessagesClickAC(text))
     }
 }
 

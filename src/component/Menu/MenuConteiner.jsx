@@ -1,13 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Menu from './Menu'
-import { setProfileInfoMe } from '../../redux/reducer/different_reducer'
 
 class MenuConteinerAPI extends React.Component {
-    componentDidMount = () => {
-        this.props.setProfileInfoMe()
-    }
-
     render = () => {
         return <Menu {...this.props} />
     }
@@ -19,8 +14,6 @@ let mapStateToProps = state => {
     }
 }
 
-const MenuConteiner = connect(mapStateToProps, { setProfileInfoMe })(
-    MenuConteinerAPI
-)
+const MenuConteiner = connect(mapStateToProps, {})(MenuConteinerAPI)
 
 export default MenuConteiner

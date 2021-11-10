@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {
-    getProfileInfo,
-    getStatus,
-    setStatus,
+    getProfileInfoTC,
+    getStatusTC,
+    setStatusTC,
 } from '../../../../redux/reducer/profile_reducer'
 import { logOutTC } from '../../../../redux/reducer/different_reducer'
 import ProfileBlock from './ProfileBlock'
@@ -15,8 +15,11 @@ import { compose } from 'redux'
 
 class ProfileBlockConteinerAPI extends React.PureComponent {
     componentDidMount = () => {
-        this.props.getProfileInfo(this.props.match.params.id, this.props.onMyID)
-        this.props.getStatus(this.props.match.params.id, this.props.onMyID)
+        this.props.getProfileInfoTC(
+            this.props.match.params.id,
+            this.props.onMyID
+        )
+        this.props.getStatusTC(this.props.match.params.id, this.props.onMyID)
     }
 
     render = () => {
@@ -41,9 +44,9 @@ let mapStateToProps = state => {
 
 export default compose(
     connect(mapStateToProps, {
-        getProfileInfo,
-        getStatus,
-        setStatus,
+        getProfileInfoTC,
+        getStatusTC,
+        setStatusTC,
         logOutTC,
     }),
     withRouter,

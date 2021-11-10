@@ -1,14 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {
-    addTextPost,
-    deleteErrorChange,
+    addTextPostTC,
+    deleteErrorChangeTC,
 } from '../../../../redux/reducer/profile_reducer'
 import PostsBlock from './PostsBlock'
 
 class PostsConteiner extends React.Component {
     addTextPost = valueNewPost => {
-        this.props.addTextPost(valueNewPost.textPost)
+        this.props.addTextPostTC(valueNewPost.textPost)
     }
 
     render = () => {
@@ -24,6 +24,6 @@ let mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { addTextPost, deleteErrorChange })(
+export default connect(mapStateToProps, { addTextPostTC, deleteErrorChangeTC })(
     PostsConteiner
 )
