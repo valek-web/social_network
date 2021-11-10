@@ -6,6 +6,7 @@ import { books_reducer } from './reducer/books_reducer'
 import { users_reduser } from './reducer/users_reduser'
 import thunk from 'redux-thunk'
 import { reducer as formReducer } from 'redux-form'
+import { composeWithDevTools } from 'redux-devtools-extension'
 
 let reducers = combineReducers({
     profilePage: profile_reducer,
@@ -16,7 +17,7 @@ let reducers = combineReducers({
     form: formReducer,
 })
 
-let store = createStore(reducers, applyMiddleware(thunk))
+let store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)))
 
 window.str = store
 
