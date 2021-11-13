@@ -66,45 +66,38 @@ let getProfileStatusAC = date => {
 
 // thunk creator
 
-export const getProfileInfoTC = (urlID, myID) => dispatch => {
+export const getProfileInfoTC = (urlID, myID) => async dispatch => {
     if (!urlID && !myID) {
-        globalAPI.setProfileMe().then(date => {
-            dispatch(setDateAC(date))
-            globalAPI.profileInfo(date.data.id).then(data => {
-                dispatch(setProfileInfoAC(data))
-            })
-        })
+        let respons = await globalAPI.setProfileMe()
+        dispatch(setDateAC(respons))
+        let data = await globalAPI.profileInfo(respons.data.id)
+        dispatch(setProfileInfoAC(data))
     } else {
-        globalAPI.profileInfo(!urlID ? myID : urlID).then(data => {
-            dispatch(setProfileInfoAC(data))
-        })
+        let data = await globalAPI.profileInfo(!urlID ? myID : urlID)
+        dispatch(setProfileInfoAC(data))
     }
 }
-export const getStatusTC = (urlID, myID) => dispatch => {
+export const getStatusTC = (urlID, myID) => async dispatch => {
     if (!urlID && !myID) {
-        globalAPI.setProfileMe().then(respons => {
-            dispatch(setDateAC(respons))
-            globalAPI.getProfileStatus(respons.data.id).then(date => {
-                dispatch(getProfileStatusAC(date.data))
-            })
-        })
+        let respons = await globalAPI.setProfileMe()
+        dispatch(setDateAC(respons))
+        let date = await globalAPI.getProfileStatus(respons.data.id)
+        dispatch(getProfileStatusAC(date.data))
     } else {
-        globalAPI.getProfileStatus(!urlID ? myID : urlID).then(date => {
-            if (!date.data) {
-                dispatch(getProfileStatusAC('No status!'))
-            } else {
-                dispatch(getProfileStatusAC(date.data))
-            }
-        })
+        let date = await globalAPI.getProfileStatus(!urlID ? myID : urlID)
+        if (!date.data) {
+            dispatch(getProfileStatusAC('No status!'))
+        } else {
+            dispatch(getProfileStatusAC(date.data))
+        }
     }
 }
-export const setStatusTC = newStatus => dispatch => {
+export const setStatusTC = newStatus => async dispatch => {
     if (!!newStatus) {
-        globalAPI.setStatus(newStatus).then(date => {
-            if (date.data.resultCode === 0) {
-                dispatch(getProfileStatusAC(newStatus))
-            }
-        })
+        let date = await globalAPI.setStatus(newStatus)
+        if (date.data.resultCode === 0) {
+            dispatch(getProfileStatusAC(newStatus))
+        }
     }
 }
 export const addTextPostTC = textPost => dispatch => {

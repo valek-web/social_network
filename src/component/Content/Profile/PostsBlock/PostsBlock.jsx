@@ -25,7 +25,7 @@ const PostsBlock = props => {
                         placeholder='New post!'
                         component='textarea'
                         name='textPost'
-                        onChange={props.deleteErrorChange}
+                        onChange={props.deleteErrorChangeTC}
                     />
                 </div>
                 <div className={q.buttons}>

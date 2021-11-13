@@ -88,20 +88,18 @@ export let toggleFollowingProgressAC = (followID, boolFollowing) => {
 
 // ThunkCreator
 
-export const setUsersTC = (usersLength, pageSize, currentPage) => {
-    return dispatch => {
+export const setUsersTC =
+    (usersLength, pageSize, currentPage) => async dispatch => {
         if (usersLength === 0) {
             dispatch(setLoaderAC(true))
-            globalAPI.getUsers(pageSize, currentPage).then(data => {
-                dispatch(setLoaderAC(false))
-                dispatch(onSetTotalCountAC(data.totalCount))
-                dispatch(onSetUsersAC(data.items))
-            })
+            let data = await globalAPI.getUsers(pageSize, currentPage)
+            dispatch(setLoaderAC(false))
+            dispatch(onSetTotalCountAC(data.totalCount))
+            dispatch(onSetUsersAC(data.items))
         }
     }
-}
 
-export const newPageTC = (bool, onMaxPage, pageNum) => {
+export const newPageTC = (bool, onMaxPage, pageNum) => async dispatch => {
     let currentPageNum = bool
         ? pageNum === onMaxPage()
             ? pageNum
@@ -109,36 +107,28 @@ export const newPageTC = (bool, onMaxPage, pageNum) => {
         : pageNum === 1
         ? pageNum
         : pageNum - 1
-    return dispatch => {
-        dispatch(onSetCurrentPage(currentPageNum))
-        dispatch(setLoaderAC(true))
-        globalAPI.getUsers(initionState.pageSize, currentPageNum).then(data => {
-            dispatch(setLoaderAC(false))
-            dispatch(onSetUsersAC(data.items))
-        })
+
+    dispatch(onSetCurrentPage(currentPageNum))
+    dispatch(setLoaderAC(true))
+    let data = await globalAPI.getUsers(initionState.pageSize, currentPageNum)
+    dispatch(setLoaderAC(false))
+    dispatch(onSetUsersAC(data.items))
+}
+
+export const followTC = onID => async dispatch => {
+    dispatch(toggleFollowingProgressAC(onID, true))
+    let date = await globalAPI.follow(onID)
+    if (date.resultCode === 0) {
+        dispatch(onFollowUnfollowUserAC(onID))
+        dispatch(toggleFollowingProgressAC(onID, false))
     }
 }
 
-export const followTC = onID => {
-    return dispatch => {
-        dispatch(toggleFollowingProgressAC(onID, true))
-        globalAPI.follow(onID).then(date => {
-            if (date.resultCode === 0) {
-                dispatch(onFollowUnfollowUserAC(onID))
-                dispatch(toggleFollowingProgressAC(onID, false))
-            }
-        })
-    }
-}
-
-export const unfollowTC = onID => {
-    return dispatch => {
-        dispatch(toggleFollowingProgressAC(onID, true))
-        globalAPI.unfollow(onID).then(date => {
-            if (date.resultCode === 0) {
-                dispatch(onFollowUnfollowUserAC(onID))
-                dispatch(toggleFollowingProgressAC(onID, false))
-            }
-        })
+export const unfollowTC = onID => async dispatch => {
+    dispatch(toggleFollowingProgressAC(onID, true))
+    let date = await globalAPI.unfollow(onID)
+    if (date.resultCode === 0) {
+        dispatch(onFollowUnfollowUserAC(onID))
+        dispatch(toggleFollowingProgressAC(onID, false))
     }
 }

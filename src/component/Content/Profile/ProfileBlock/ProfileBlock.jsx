@@ -33,7 +33,7 @@ const ProfileBlock = React.memo(props => {
                     </p>
                     <Status
                         status={props.status}
-                        onSetStatus={props.setStatus}
+                        onSetStatusTC={props.setStatusTC}
                     />
                 </div>
             </div>

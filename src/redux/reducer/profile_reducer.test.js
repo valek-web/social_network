@@ -1,4 +1,4 @@
-import { addPostAC, setProfileInfoAC, profile_reducer } from './profile_reducer'
+import { addPostAC, profile_reducer } from './profile_reducer'
 
 it('new post', () => {
     //

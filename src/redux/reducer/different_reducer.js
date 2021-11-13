@@ -78,31 +78,30 @@ const inizializationAC = () => {
 
 // ThunkCreator
 
-export const setProfileInfoMeTC = () => dispatch => {
-    return globalAPI.setProfileMe().then(date => {
+export const setProfileInfoMeTC = () => async dispatch => {
+    return await globalAPI.setProfileMe().then(date => {
         dispatch(setDateAC(date))
     })
 }
 
 export const setLoginTC =
-    (email, password, rememberMe, captcha) => dispatch => {
-        globalAPI.login(email, password, rememberMe, captcha).then(date => {
-            if (date.resultCode === 0) {
-                globalAPI.setProfileMe().then(date => {
-                    dispatch(setDateAC(date))
-                })
-            } else {
-                dispatch(stopSubmit('login', { _error: date.messages[0] }))
-            }
-        })
+    (email, password, rememberMe, captcha) => async dispatch => {
+        let date = await globalAPI.login(email, password, rememberMe, captcha)
+        if (date.resultCode === 0) {
+            globalAPI.setProfileMe().then(date => {
+                dispatch(setDateAC(date))
+            })
+        } else {
+            dispatch(stopSubmit('login', { _error: date.messages[0] }))
+        }
     }
 
-export const logOutTC = () => dispatch => {
-    globalAPI.logOut().then(date => dispatch(deleteDateAC()))
+export const logOutTC = () => async dispatch => {
+    await globalAPI.logOut()
+    dispatch(deleteDateAC())
 }
 
-export const inizializationTC = () => dispatch => {
-    dispatch(setProfileInfoMeTC()).then(() => {
-        dispatch(inizializationAC())
-    })
+export const inizializationTC = () => async dispatch => {
+    await dispatch(setProfileInfoMeTC())
+    dispatch(inizializationAC())
 }

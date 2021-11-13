@@ -21,7 +21,7 @@ const Status = React.memo(props => {
     const deactiveEditMode = () => {
         setEditMode(false)
         if (status !== props.status) {
-            props.onSetStatus(status)
+            props.onSetStatusTC(status)
         }
     }
 
