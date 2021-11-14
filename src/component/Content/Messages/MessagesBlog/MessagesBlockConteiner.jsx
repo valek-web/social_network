@@ -1,9 +1,6 @@
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import {
-    addMessagesTC,
-    deleteErrorTC,
-} from '../../../../redux/reducer/dialogs_reducer'
+import { thunkCreatorDialogs } from '../../../../redux/reducer/dialogs_reducer'
 import { AuthRedirect } from '../../../hoc/AuthRedirect'
 import MessagesBlock from './MessagesBlock'
 import React from 'react'
@@ -37,6 +34,6 @@ let mapStateToProps = state => {
     }
 }
 export default compose(
-    connect(mapStateToProps, { addMessagesTC, deleteErrorTC }),
+    connect(mapStateToProps, { ...thunkCreatorDialogs }),
     AuthRedirect
 )(MessagesBlockContainer)

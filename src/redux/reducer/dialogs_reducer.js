@@ -40,23 +40,29 @@ export const dialogs_reducer = (state = initialState, action) => {
 
 // Action Creator
 
-let actionNewMessagesClickAC = text => {
-    return {
-        type: ADD_MESSAGES,
-        text,
-    }
+let actionCreator = {
+    newMessagesClickAC: text => {
+        return {
+            type: ADD_MESSAGES,
+            text,
+        }
+    },
 }
 
 // Thunk Creator
 
-export const addMessagesTC = text => dispatch => {
-    if (!text) {
-        dispatch(stopSubmit('message', { _error: 'Unable to send empty post' }))
-    } else {
-        dispatch(actionNewMessagesClickAC(text))
-    }
-}
+export let thunkCreatorDialogs = {
+    addMessagesTC: text => dispatch => {
+        if (!text) {
+            dispatch(
+                stopSubmit('message', { _error: 'Unable to send empty post' })
+            )
+        } else {
+            dispatch(actionCreator.newMessagesClickAC(text))
+        }
+    },
 
-export const deleteErrorTC = () => dispatch => {
-    dispatch(stopSubmit('message', { _error: null }))
+    deleteErrorTC: () => dispatch => {
+        dispatch(stopSubmit('message', { _error: null }))
+    },
 }
