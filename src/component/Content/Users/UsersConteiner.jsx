@@ -1,11 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {
-    setUsersTC,
-    newPageTC,
-    followTC,
-    unfollowTC,
-} from '../../../redux/reducer/users_reduser'
+import { thunkCreatorUsers } from '../../../redux/reducer/users_reduser'
 import Users from './Users'
 import Preloader from '../../different/preloader/preloader'
 import load from './../../../img/load_book.gif'
@@ -56,10 +51,7 @@ let mapStateToProps = state => {
 
 export default compose(
     connect(mapStateToProps, {
-        setUsersTC,
-        newPageTC,
-        followTC,
-        unfollowTC,
+        ...thunkCreatorUsers,
     }),
     AuthRedirect
 )(UsersConteinerAPI)
