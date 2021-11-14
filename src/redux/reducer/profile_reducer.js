@@ -1,7 +1,7 @@
 import { stopSubmit } from 'redux-form'
 import { globalAPI } from '../../api/api'
 import { actionCreatorDifferent } from './different_reducer'
-
+// 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
 const ADD_POST = 'social-network/profile/ADD_POST'
 const SET_PROFILE = 'social-network/profile/SET_PROFILE'
 const GET_STATUS = 'social-network/profile/GET_STATUS'
@@ -53,61 +53,67 @@ export const profile_reducer = (state = initialState, action) => {
 
 // action Creator
 
-let addPostAC = text => {
-    return { type: ADD_POST, text }
-}
-let setProfileInfoAC = date => {
-    return { type: SET_PROFILE, date }
-}
+let actionCreator = {
+    addPostAC: text => {
+        return { type: ADD_POST, text }
+    },
+    setProfileInfoAC: date => {
+        return { type: SET_PROFILE, date }
+    },
 
-let getProfileStatusAC = date => {
-    return { type: GET_STATUS, date }
+    getProfileStatusAC: date => {
+        return { type: GET_STATUS, date }
+    },
 }
 
 // thunk creator
 
-export const getProfileInfoTC = (urlID, myID) => async dispatch => {
-    if (!urlID && !myID) {
-        let respons = await globalAPI.setProfileMe()
-        dispatch(actionCreatorDifferent.setDateAC(respons))
-        let data = await globalAPI.profileInfo(respons.data.id)
-        dispatch(setProfileInfoAC(data))
-    } else {
-        let data = await globalAPI.profileInfo(!urlID ? myID : urlID)
-        dispatch(setProfileInfoAC(data))
-    }
-}
-export const getStatusTC = (urlID, myID) => async dispatch => {
-    if (!urlID && !myID) {
-        let respons = await globalAPI.setProfileMe()
-        dispatch(actionCreatorDifferent.setDateAC(respons))
-        let date = await globalAPI.getProfileStatus(respons.data.id)
-        dispatch(getProfileStatusAC(date.data))
-    } else {
-        let date = await globalAPI.getProfileStatus(!urlID ? myID : urlID)
-        if (!date.data) {
-            dispatch(getProfileStatusAC('No status!'))
+export let thunkCreatorProfile = {
+    getProfileInfoTC: (urlID, myID) => async dispatch => {
+        if (!urlID && !myID) {
+            let respons = await globalAPI.setProfileMe()
+            dispatch(actionCreator.actionCreatorDifferent.setDateAC(respons))
+            let data = await globalAPI.profileInfo(respons.data.id)
+            dispatch(actionCreator.setProfileInfoAC(data))
         } else {
-            dispatch(getProfileStatusAC(date.data))
+            let data = await globalAPI.profileInfo(!urlID ? myID : urlID)
+            dispatch(actionCreator.setProfileInfoAC(data))
         }
-    }
-}
-export const setStatusTC = newStatus => async dispatch => {
-    if (!!newStatus) {
-        let date = await globalAPI.setStatus(newStatus)
-        if (date.data.resultCode === 0) {
-            dispatch(getProfileStatusAC(newStatus))
+    },
+    getStatusTC: (urlID, myID) => async dispatch => {
+        if (!urlID && !myID) {
+            let respons = await globalAPI.setProfileMe()
+            dispatch(actionCreatorDifferent.setDateAC(respons))
+            let date = await globalAPI.getProfileStatus(respons.data.id)
+            dispatch(actionCreator.getProfileStatusAC(date.data))
+        } else {
+            let date = await globalAPI.getProfileStatus(!urlID ? myID : urlID)
+            if (!date.data) {
+                dispatch(actionCreator.getProfileStatusAC('No status!'))
+            } else {
+                dispatch(actionCreator.getProfileStatusAC(date.data))
+            }
         }
-    }
-}
-export const addTextPostTC = textPost => dispatch => {
-    if (!textPost) {
-        dispatch(stopSubmit('post', { _error: 'Unable to create empty post' }))
-    } else {
-        dispatch(addPostAC(textPost))
-    }
-}
+    },
+    setStatusTC: newStatus => async dispatch => {
+        if (!!newStatus) {
+            let date = await globalAPI.setStatus(newStatus)
+            if (date.data.resultCode === 0) {
+                dispatch(actionCreator.getProfileStatusAC(newStatus))
+            }
+        }
+    },
+    addTextPostTC: textPost => dispatch => {
+        if (!textPost) {
+            dispatch(
+                stopSubmit('post', { _error: 'Unable to create empty post' })
+            )
+        } else {
+            dispatch(actionCreator.addPostAC(textPost))
+        }
+    },
 
-export const deleteErrorChangeTC = () => dispatch => {
-    dispatch(stopSubmit('post', { _error: null }))
+    deleteErrorChangeTC: () => dispatch => {
+        dispatch(stopSubmit('post', { _error: null }))
+    },
 }

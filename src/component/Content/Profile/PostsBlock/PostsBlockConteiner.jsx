@@ -1,9 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {
-    addTextPostTC,
-    deleteErrorChangeTC,
-} from '../../../../redux/reducer/profile_reducer'
+import { thunkCreatorProfile } from '../../../../redux/reducer/profile_reducer'
 import PostsBlock from './PostsBlock'
 
 class PostsConteiner extends React.Component {
@@ -24,6 +21,6 @@ let mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { addTextPostTC, deleteErrorChangeTC })(
+export default connect(mapStateToProps, { ...thunkCreatorProfile })(
     PostsConteiner
 )

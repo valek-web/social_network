@@ -1,10 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {
-    getProfileInfoTC,
-    getStatusTC,
-    setStatusTC,
-} from '../../../../redux/reducer/profile_reducer'
+import { thunkCreatorProfile } from '../../../../redux/reducer/profile_reducer'
 import { thunkCreatorDifferent } from '../../../../redux/reducer/different_reducer'
 import ProfileBlock from './ProfileBlock'
 import Preloader from '../../../different/preloader/preloader'
@@ -44,9 +40,7 @@ let mapStateToProps = state => {
 
 export default compose(
     connect(mapStateToProps, {
-        getProfileInfoTC,
-        getStatusTC,
-        setStatusTC,
+        ...thunkCreatorProfile,
         ...thunkCreatorDifferent,
     }),
     withRouter,
