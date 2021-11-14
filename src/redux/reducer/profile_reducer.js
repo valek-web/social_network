@@ -1,7 +1,7 @@
 import { stopSubmit } from 'redux-form'
 import { globalAPI } from '../../api/api'
 import { actionCreatorDifferent } from './different_reducer'
-// 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
+// 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
 const ADD_POST = 'social-network/profile/ADD_POST'
 const SET_PROFILE = 'social-network/profile/SET_PROFILE'
 const GET_STATUS = 'social-network/profile/GET_STATUS'

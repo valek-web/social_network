@@ -40,8 +40,6 @@ export const globalAPI = {
             .then(respons => respons.data)
     },
     logOut() {
-        return instance
-            .delete('auth/login')
-            .then(respons => console.log(respons))
+        return instance.delete('auth/login').then(respons => respons)
     },
 }

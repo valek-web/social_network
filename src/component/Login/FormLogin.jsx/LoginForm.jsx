@@ -4,9 +4,9 @@ import { requiered } from '../../../validate/validateForms'
 import Texterea from '../../different/Texterea/Texterea'
 import style from './LoginForm.module.css'
 
-const LoginForm = props => {
+const LoginForm = ({ handleSubmit, error }) => {
     return (
-        <form className={style.boxForm} onSubmit={props.handleSubmit}>
+        <form className={style.boxForm} onSubmit={handleSubmit}>
             <div>
                 <Field
                     name='email'
@@ -29,14 +29,12 @@ const LoginForm = props => {
                 <Field name='checkbox' type='checkbox' component='input' />
                 <span>remember me</span>
             </div>
-            {!props.error ? (
-                ''
-            ) : (
-                <div className={style.errorBox}>{props.error}</div>
-            )}
+            {!error ? '' : <div className={style.errorBox}>{error}</div>}
             <div className={style.btn_box}>
                 <button>Log in</button>
-                <button>Sign in</button>
+                <a href='https://social-network.samuraijs.com/signUp'>
+                    sign up
+                </a>
             </div>
         </form>
     )

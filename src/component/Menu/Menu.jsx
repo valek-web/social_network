@@ -2,13 +2,11 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import q from './Menu.module.css'
 
-const Menu = props => {
+const Menu = ({ log }) => {
     return (
         <nav className={q.nav}>
             <div>
-                <NavLink to='/profile'>
-                    {props.log ? 'Profile' : 'Sign IN'}
-                </NavLink>
+                <NavLink to='/profile'>{log ? 'Profile' : 'Sign IN'}</NavLink>
             </div>
             <div>
                 <NavLink to='/messages'>Messages</NavLink>
