@@ -8,7 +8,7 @@ import Profile from './component/Content/Profile/Profile'
 import MenuConteiner from './component/Menu/MenuConteiner'
 import Login from './component/Login/Login'
 import { connect } from 'react-redux'
-import { inizializationTC } from './redux/reducer/different_reducer'
+import { thunkCreatorDifferent } from './redux/reducer/different_reducer'
 import { withRouter } from 'react-router'
 import Preloader from './component/different/preloader/preloader'
 import loan from './img/load_book.gif'
@@ -48,4 +48,6 @@ let mapStateToProps = state => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, { inizializationTC })(App))
+export default withRouter(
+    connect(mapStateToProps, { ...thunkCreatorDifferent })(App)
+)

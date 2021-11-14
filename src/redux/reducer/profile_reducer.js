@@ -1,6 +1,6 @@
 import { stopSubmit } from 'redux-form'
 import { globalAPI } from '../../api/api'
-import { setDateAC } from './different_reducer'
+import { actionCreatorDifferent } from './different_reducer'
 
 const ADD_POST = 'social-network/profile/ADD_POST'
 const SET_PROFILE = 'social-network/profile/SET_PROFILE'
@@ -69,7 +69,7 @@ let getProfileStatusAC = date => {
 export const getProfileInfoTC = (urlID, myID) => async dispatch => {
     if (!urlID && !myID) {
         let respons = await globalAPI.setProfileMe()
-        dispatch(setDateAC(respons))
+        dispatch(actionCreatorDifferent.setDateAC(respons))
         let data = await globalAPI.profileInfo(respons.data.id)
         dispatch(setProfileInfoAC(data))
     } else {
@@ -80,7 +80,7 @@ export const getProfileInfoTC = (urlID, myID) => async dispatch => {
 export const getStatusTC = (urlID, myID) => async dispatch => {
     if (!urlID && !myID) {
         let respons = await globalAPI.setProfileMe()
-        dispatch(setDateAC(respons))
+        dispatch(actionCreatorDifferent.setDateAC(respons))
         let date = await globalAPI.getProfileStatus(respons.data.id)
         dispatch(getProfileStatusAC(date.data))
     } else {

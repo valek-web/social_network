@@ -1,5 +1,5 @@
 import React from 'react'
-import { setLoginTC } from '../../redux/reducer/different_reducer'
+import { thunkCreatorDifferent } from '../../redux/reducer/different_reducer'
 import LoginForm from './FormLogin.jsx/LoginForm'
 import style from './Login.module.css'
 import { connect } from 'react-redux'
@@ -33,4 +33,4 @@ let mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { setLoginTC })(Login)
+export default connect(mapStateToProps, { ...thunkCreatorDifferent })(Login)

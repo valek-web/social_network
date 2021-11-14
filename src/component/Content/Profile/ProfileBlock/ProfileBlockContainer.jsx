@@ -5,7 +5,7 @@ import {
     getStatusTC,
     setStatusTC,
 } from '../../../../redux/reducer/profile_reducer'
-import { logOutTC } from '../../../../redux/reducer/different_reducer'
+import { thunkCreatorDifferent } from '../../../../redux/reducer/different_reducer'
 import ProfileBlock from './ProfileBlock'
 import Preloader from '../../../different/preloader/preloader'
 import load from './../../../../img/load_book.gif'
@@ -47,7 +47,7 @@ export default compose(
         getProfileInfoTC,
         getStatusTC,
         setStatusTC,
-        logOutTC,
+        ...thunkCreatorDifferent,
     }),
     withRouter,
     AuthRedirect

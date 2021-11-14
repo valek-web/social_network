@@ -50,58 +50,65 @@ export const different_reducer = (state = initialState, action) => {
 
 //Action Creator
 
-export const setLoaderAC = newBool => {
-    return {
-        type: LOADER,
-        newBool,
-    }
-}
+export let actionCreatorDifferent = {
+    setLoaderAC: newBool => {
+        return {
+            type: LOADER,
+            newBool,
+        }
+    },
 
-export const setDateAC = date => {
-    return {
-        type: SET_MY_DATE,
-        date,
-    }
-}
+    setDateAC: date => {
+        return {
+            type: SET_MY_DATE,
+            date,
+        }
+    },
 
-const deleteDateAC = () => {
-    return {
-        type: DELETE_MY_DATE,
-    }
-}
+    deleteDateAC: () => {
+        return {
+            type: DELETE_MY_DATE,
+        }
+    },
 
-const inizializationAC = () => {
-    return {
-        type: INITIALIZE,
-    }
+    inizializationAC: () => {
+        return {
+            type: INITIALIZE,
+        }
+    },
 }
 
 // ThunkCreator
 
-export const setProfileInfoMeTC = () => async dispatch => {
-    return await globalAPI.setProfileMe().then(date => {
-        dispatch(setDateAC(date))
-    })
-}
+export let thunkCreatorDifferent = {
+    setProfileInfoMeTC: () => async dispatch => {
+        return await globalAPI.setProfileMe().then(date => {
+            dispatch(actionCreatorDifferent.setDateAC(date))
+        })
+    },
 
-export const setLoginTC =
-    (email, password, rememberMe, captcha) => async dispatch => {
+    setLoginTC: (email, password, rememberMe, captcha) => async dispatch => {
         let date = await globalAPI.login(email, password, rememberMe, captcha)
         if (date.resultCode === 0) {
             globalAPI.setProfileMe().then(date => {
-                dispatch(setDateAC(date))
+                dispatch(actionCreatorDifferent.setDateAC(date))
             })
         } else {
             dispatch(stopSubmit('login', { _error: date.messages[0] }))
         }
-    }
+    },
 
-export const logOutTC = () => async dispatch => {
-    await globalAPI.logOut()
-    dispatch(deleteDateAC())
+    logOutTC: () => async dispatch => {
+        await globalAPI.logOut()
+        dispatch(actionCreatorDifferent.deleteDateAC())
+    },
+
+    inizializationTC: () => async dispatch => {
+        await dispatch(setProfileInfoMeTC())
+        dispatch(actionCreatorDifferent.inizializationAC())
+    },
 }
 
-export const inizializationTC = () => async dispatch => {
-    await dispatch(setProfileInfoMeTC())
-    dispatch(inizializationAC())
+let setProfileInfoMeTC = () => {
+    return thunkCreatorDifferent.setProfileInfoMeTC()
 }

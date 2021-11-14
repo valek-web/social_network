@@ -1,5 +1,5 @@
 import { globalAPI } from '../../api/api'
-import { setLoaderAC } from './different_reducer'
+import { actionCreatorDifferent } from './different_reducer'
 
 const FOLLOW_USER = 'social-network/users/FOLLOW_USER'
 const SET_USER = 'social-network/users/GET_USER'
@@ -91,9 +91,9 @@ export let toggleFollowingProgressAC = (followID, boolFollowing) => {
 export const setUsersTC =
     (usersLength, pageSize, currentPage) => async dispatch => {
         if (usersLength === 0) {
-            dispatch(setLoaderAC(true))
+            dispatch(actionCreatorDifferent.setLoaderAC(true))
             let data = await globalAPI.getUsers(pageSize, currentPage)
-            dispatch(setLoaderAC(false))
+            dispatch(actionCreatorDifferent.setLoaderAC(false))
             dispatch(onSetTotalCountAC(data.totalCount))
             dispatch(onSetUsersAC(data.items))
         }
@@ -109,9 +109,9 @@ export const newPageTC = (bool, onMaxPage, pageNum) => async dispatch => {
         : pageNum - 1
 
     dispatch(onSetCurrentPage(currentPageNum))
-    dispatch(setLoaderAC(true))
+    dispatch(actionCreatorDifferent.setLoaderAC(true))
     let data = await globalAPI.getUsers(initionState.pageSize, currentPageNum)
-    dispatch(setLoaderAC(false))
+    dispatch(actionCreatorDifferent.setLoaderAC(false))
     dispatch(onSetUsersAC(data.items))
 }
 
