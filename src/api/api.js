@@ -12,34 +12,34 @@ export const globalAPI = {
     getUsers(pageSize, currentPage) {
         return instance
             .get(`users?count=${pageSize}&page=${currentPage}`)
-            .then(respons => respons.data)
+            .then((respons) => respons.data)
     },
     unfollow(onID) {
-        return instance.delete(`follow/${onID}`).then(respons => respons.data)
+        return instance.delete(`follow/${onID}`).then((respons) => respons.data)
     },
     follow(onID) {
-        return instance.post(`follow/${onID}`).then(respons => respons.data)
+        return instance.post(`follow/${onID}`).then((respons) => respons.data)
     },
     profileInfo(id) {
-        return instance.get(`profile/${id}`).then(respons => respons.data)
+        return instance.get(`profile/${id}`).then((respons) => respons.data)
     },
     setProfileMe() {
-        return instance.get('auth/me').then(respons => respons.data)
+        return instance.get('auth/me').then((respons) => respons.data)
     },
     getProfileStatus(id) {
-        return instance.get(`profile/status/${id}`).then(respons => respons)
+        return instance.get(`profile/status/${id}`).then((respons) => respons)
     },
     setStatus(status) {
         return instance
             .put('profile/status', { status })
-            .then(respons => respons)
+            .then((respons) => respons)
     },
     login(email, password, rememberMe, captcha) {
         return instance
             .post('auth/login', { email, password, rememberMe, captcha })
-            .then(respons => respons.data)
+            .then((respons) => respons.data)
     },
     logOut() {
-        return instance.delete('auth/login').then(respons => respons)
+        return instance.delete('auth/login').then((respons) => respons)
     },
 }
