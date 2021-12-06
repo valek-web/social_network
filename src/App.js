@@ -2,16 +2,19 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import './App.css'
 import Messages from './component/Content/Messages/Messages'
-import UsersConteiner from './component/Content/Users/UsersConteiner'
 import Article from './component/Article/Article'
 import Profile from './component/Content/Profile/Profile'
 import MenuConteiner from './component/Menu/MenuConteiner'
-import Login from './component/Login/Login'
 import { connect } from 'react-redux'
 import { thunkCreatorDifferent } from './redux/reducer/different_reducer'
 import { withRouter } from 'react-router'
 import Preloader from './component/different/preloader/preloader'
 import loan from './img/load_book.gif'
+import { ReactSuspense } from './component/hoc/Suspense'
+const Login = React.lazy(() => import('./component/Login/Login'))
+const UsersConteiner = React.lazy(() =>
+    import('./component/Content/Users/UsersConteiner')
+)
 
 class App extends React.Component {
     componentDidMount = () => {
@@ -34,15 +37,21 @@ class App extends React.Component {
                             />
                         )}
                     />
-                    <Route path='/users' render={() => <UsersConteiner />} />
-                    <Route path='/login' render={() => <Login />} />
+                    <Route
+                        path='/users'
+                        render={() => ReactSuspense(UsersConteiner)()}
+                    />
+                    <Route
+                        path='/login'
+                        render={() => ReactSuspense(Login)()}
+                    />
                 </div>
                 <Article />
             </div>
         )
     }
 }
-let mapStateToProps = state => {
+let mapStateToProps = (state) => {
     return {
         inizialize: state.differentPage.inizialization,
     }
