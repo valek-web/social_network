@@ -11,6 +11,7 @@ class Login extends React.PureComponent {
             formDate.email,
             formDate.password,
             formDate.rememberMe,
+            formDate.captcha,
             true
         )
     }
@@ -21,7 +22,7 @@ class Login extends React.PureComponent {
         ) : (
             <div className={style.boxForm}>
                 <h1>LOGIN</h1>
-                <LoginForm onSubmit={this.submitForm} />
+                <LoginForm onSubmit={this.submitForm} captcha={this.props.captcha}/>
             </div>
         )
     }
@@ -30,6 +31,7 @@ class Login extends React.PureComponent {
 let mapStateToProps = state => {
     return {
         login: state.differentPage.login,
+        captcha: state.differentPage.getCaptchaUrl
     }
 }
 

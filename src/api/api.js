@@ -34,12 +34,17 @@ export const globalAPI = {
             .put('profile/status', { status })
             .then((respons) => respons)
     },
-    login(email, password, rememberMe, captcha) {
+    login(email, password, rememberMe, captcha = null) {
         return instance
             .post('auth/login', { email, password, rememberMe, captcha })
             .then((respons) => respons.data)
     },
     logOut() {
         return instance.delete('auth/login').then((respons) => respons)
+    },
+    getCaptchaUrl() {
+        return instance
+            .get('/security/get-captcha-url')
+            .then((respons) => respons)
     },
 }

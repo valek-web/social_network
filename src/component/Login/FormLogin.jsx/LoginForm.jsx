@@ -4,7 +4,7 @@ import { requiered } from '../../../validate/validateForms'
 import Texterea from '../../different/Texterea/Texterea'
 import style from './LoginForm.module.css'
 
-const LoginForm = ({ handleSubmit, error }) => {
+const LoginForm = ({ handleSubmit, error, captcha }) => {
     return (
         <form className={style.boxForm} onSubmit={handleSubmit}>
             <div>
@@ -30,6 +30,10 @@ const LoginForm = ({ handleSubmit, error }) => {
                 <span>remember me</span>
             </div>
             {!error ? '' : <div className={style.errorBox}>{error}</div>}
+            {!!captcha ? <div>
+                <div><img src={captcha} alt='#'/></div>
+                <Field name='captcha' type='text' component='input'/>
+            </div>: ''}
             <div className={style.btn_box}>
                 <button>Log in</button>
                 <a href='https://social-network.samuraijs.com/signUp'>
