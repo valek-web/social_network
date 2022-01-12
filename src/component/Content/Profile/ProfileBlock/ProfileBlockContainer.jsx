@@ -1,4 +1,5 @@
-import React from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { thunkCreatorProfile } from '../../../../redux/reducer/profile_reducer'
 import { thunkCreatorDifferent } from '../../../../redux/reducer/different_reducer'
@@ -9,25 +10,19 @@ import { withRouter } from 'react-router-dom'
 import { AuthRedirect } from '../../../hoc/AuthRedirect'
 import { compose } from 'redux'
 
-class ProfileBlockConteinerAPI extends React.PureComponent {
-    componentDidUpdate = () => {
-        this.props.getProfileInfoTC(
-            this.props.match.params.id,
-            this.props.onMyID
-        )
-        this.props.getStatusTC(this.props.match.params.id, this.props.onMyID)
-    }
+const ProfileBlockConteinerAPI = React.memo((props) => {
+    useEffect(() => {
+        props.getProfileInfoTC(props.match.params.id, props.onMyID)
+        props.getStatusTC(props.match.params.id, props.onMyID)
+    }, [props.status, props.status])
+    return !props.boolProfile || !props.status ? (
+        <>{<Preloader loading={load} />}</>
+    ) : (
+        <ProfileBlock {...props} />
+    )
+})
 
-    render = () => {
-        return !this.props.boolProfile  || !this.props.status ? (
-            <>{<Preloader loading={load} />}</>
-        ) : (
-            <ProfileBlock {...this.props} />
-        )
-    }
-}
-
-let mapStateToProps = state => {
+let mapStateToProps = (state) => {
     return {
         status: state.profilePage.status,
         onProfile: state.profilePage.profile,

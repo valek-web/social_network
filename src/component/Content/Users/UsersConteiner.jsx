@@ -1,4 +1,5 @@
-import React from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { thunkCreatorUsers } from '../../../redux/reducer/users_reduser'
 import Users from './Users'
@@ -7,36 +8,30 @@ import load from './../../../img/load_book.gif'
 import { AuthRedirect } from '../../hoc/AuthRedirect'
 import { compose } from 'redux'
 
-class UsersConteinerAPI extends React.PureComponent {
-    componentDidMount = () => {
-        this.props.setUsersTC(
-            this.props.users.length,
-            this.props.pageSize,
-            this.props.currentPage
-        )
+const UsersConteinerAPI = React.memo((props) => {
+    useEffect(() => {
+        props.setUsersTC(props.users.length, props.pageSize, props.currentPage)
+    }, [])
+
+    const onPageClick = (bool, onMaxPage, pageNum = props.currentPage) => {
+        props.newPageTC(bool, onMaxPage, pageNum)
     }
 
-    onPageClick = (bool, onMaxPage, pageNum = this.props.currentPage) => {
-        this.props.newPageTC(bool, onMaxPage, pageNum)
-    }
+    return props.loader ? (
+        <Preloader loading={load} />
+    ) : (
+        <Users
+            users={props.onUsers}
+            onTotalUsersCount={props.totalUsersCount}
+            onPageSize={props.pageSize}
+            onCurrentPage={props.currentPage}
+            {...props}
+            onClickBtn={onPageClick}
+        />
+    )
+})
 
-    render = () => {
-        return this.props.loader ? (
-            <Preloader loading={load} />
-        ) : (
-            <Users
-                users={this.props.onUsers}
-                onTotalUsersCount={this.props.totalUsersCount}
-                onPageSize={this.props.pageSize}
-                onCurrentPage={this.props.currentPage}
-                {...this.props}
-                onClickBtn={this.onPageClick}
-            />
-        )
-    }
-}
-
-let mapStateToProps = state => {
+let mapStateToProps = (state) => {
     return {
         onUsers: state.usersPage.users,
         totalUsersCount: state.usersPage.totalUsers,

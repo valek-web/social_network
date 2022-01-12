@@ -1,11 +1,11 @@
 import React from 'react'
 import w from './Post.module.css'
 
-const Posts = props => {
+const Posts = (props) => {
     return (
         <div className={w.post}>
             <div className={w.ava}>
-                <img src={props.onImgAva} alt="" />
+                <img src={props.onImgAva} alt='' />
             </div>
             <div className={w.info}>
                 <p>{props.text}</p>

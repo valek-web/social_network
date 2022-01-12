@@ -3,8 +3,8 @@ import { Field, reduxForm } from 'redux-form'
 import Posts from './Post/Post'
 import q from './PostsBlock.module.css'
 
-const PostsBlock = props => {
-    let mapPosts = props.posts.map(i => {
+const PostsBlock = (props) => {
+    let mapPosts = props.posts.map((i) => {
         return (
             <Posts
                 onImgAva={props.imgAva}
