@@ -2,13 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Menu from './Menu'
 
-class MenuConteinerAPI extends React.Component {
-    render = () => {
-        return <Menu {...this.props} />
-    }
-}
+const MenuConteinerAPI = React.memo((props) => {
+    return <Menu {...props} />
+})
 
-let mapStateToProps = state => {
+let mapStateToProps = (state) => {
     return {
         log: state.differentPage.login,
     }

@@ -10,23 +10,20 @@ import {
     getTextNewMessage,
 } from '../../../../redux/selects'
 
-class MessagesBlockContainer extends React.PureComponent {
-    addMessage = value => {
+const MessagesBlockContainer = React.memo((props) => {
+    const addMessage = (value) => {
         this.props.addMessagesTC(value.newMessage)
     }
+    return (
+        <MessagesBlock
+            {...props}
+            onAddMessage={addMessage}
+            deleteErrorChange={props.deleteErrorTC}
+        />
+    )
+})
 
-    render = () => {
-        return (
-            <MessagesBlock
-                {...this.props}
-                onAddMessage={this.addMessage}
-                deleteErrorChange={this.props.deleteErrorTC}
-            />
-        )
-    }
-}
-
-let mapStateToProps = state => {
+let mapStateToProps = (state) => {
     return {
         messageMap: getMessageText(state),
         textValue: getTextNewMessage(state),

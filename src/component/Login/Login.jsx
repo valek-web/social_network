@@ -5,9 +5,9 @@ import style from './Login.module.css'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 
-class Login extends React.PureComponent {
-    submitForm = formDate => {
-        this.props.setLoginTC(
+const Login = React.memo((props) => {
+    const submitForm = (formDate) => {
+        props.setLoginTC(
             formDate.email,
             formDate.password,
             formDate.rememberMe,
@@ -16,22 +16,20 @@ class Login extends React.PureComponent {
         )
     }
 
-    render = () => {
-        return this.props.login ? (
-            <Redirect to='/profile' />
-        ) : (
-            <div className={style.boxForm}>
-                <h1>LOGIN</h1>
-                <LoginForm onSubmit={this.submitForm} captcha={this.props.captcha}/>
-            </div>
-        )
-    }
-}
+    return props.login ? (
+        <Redirect to='/profile' />
+    ) : (
+        <div className={style.boxForm}>
+            <h1>LOGIN</h1>
+            <LoginForm onSubmit={submitForm} captcha={props.captcha} />
+        </div>
+    )
+})
 
-let mapStateToProps = state => {
+let mapStateToProps = (state) => {
     return {
         login: state.differentPage.login,
-        captcha: state.differentPage.getCaptchaUrl
+        captcha: state.differentPage.getCaptchaUrl,
     }
 }
 

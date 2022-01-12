@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import './App.css'
 import Messages from './component/Content/Messages/Messages'
 import Article from './component/Article/Article'
@@ -27,24 +27,30 @@ class App extends React.Component {
             <div className='App'>
                 <MenuConteiner />
                 <div className='cont'>
-                    <Route path='/profile/:id?' render={() => <Profile />} />
-                    <Route
-                        path='/messages:id?'
-                        render={() => (
-                            <Messages
-                                stateMessages={this.props.state}
-                                dispatch={this.props.dispatch}
-                            />
-                        )}
-                    />
-                    <Route
-                        path='/users'
-                        render={() => ReactSuspense(UsersConteiner)()}
-                    />
-                    <Route
-                        path='/login'
-                        render={() => ReactSuspense(Login)()}
-                    />
+                    <Switch>
+                        <Route
+                            path='/profile/:id?'
+                            render={() => <Profile />}
+                        />
+                        <Route
+                            path='/messages:id?'
+                            render={() => (
+                                <Messages
+                                    stateMessages={this.props.state}
+                                    dispatch={this.props.dispatch}
+                                />
+                            )}
+                        />
+                        <Route
+                            path='/users'
+                            render={() => ReactSuspense(UsersConteiner)()}
+                        />
+                        <Route
+                            path='/login'
+                            render={() => ReactSuspense(Login)()}
+                        />
+                        <Redirect from='/' to='/profile' />
+                    </Switch>
                 </div>
                 <Article />
             </div>

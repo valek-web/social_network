@@ -10,7 +10,7 @@ import { AuthRedirect } from '../../../hoc/AuthRedirect'
 import { compose } from 'redux'
 
 class ProfileBlockConteinerAPI extends React.PureComponent {
-    componentDidMount = () => {
+    componentDidUpdate = () => {
         this.props.getProfileInfoTC(
             this.props.match.params.id,
             this.props.onMyID
@@ -19,7 +19,7 @@ class ProfileBlockConteinerAPI extends React.PureComponent {
     }
 
     render = () => {
-        return !this.props.boolProfile /* || !this.props.status*/ ? (
+        return !this.props.boolProfile  || !this.props.status ? (
             <>{<Preloader loading={load} />}</>
         ) : (
             <ProfileBlock {...this.props} />
