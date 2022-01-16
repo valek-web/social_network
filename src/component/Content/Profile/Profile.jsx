@@ -1,12 +1,17 @@
 import React from 'react'
 import PostsBlockConteiner from './PostsBlock/PostsBlockConteiner'
 import ProfileBlockContainer from './ProfileBlock/ProfileBlockContainer'
+import style from './Profile.module.css'
 
-const Profile = React.memo(props => {
+const Profile = React.memo((props) => {
     return (
         <div>
-            <ProfileBlockContainer />
-            <PostsBlockConteiner />
+            <div className={style.profile}>
+                <ProfileBlockContainer />
+            </div>
+            <div className={style.posts}>
+                <PostsBlockConteiner />
+            </div>
         </div>
     )
 })

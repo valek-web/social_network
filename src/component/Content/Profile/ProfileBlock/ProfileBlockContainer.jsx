@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { thunkCreatorProfile } from '../../../../redux/reducer/profile_reducer'
@@ -14,7 +13,7 @@ const ProfileBlockConteinerAPI = React.memo((props) => {
     useEffect(() => {
         props.getProfileInfoTC(props.match.params.id, props.onMyID)
         props.getStatusTC(props.match.params.id, props.onMyID)
-    }, [props.status, props.status])
+    }, [props, props.status, props.boolProfile])
     return !props.boolProfile || !props.status ? (
         <>{<Preloader loading={load} />}</>
     ) : (

@@ -1,9 +1,7 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import './App.css'
 import Messages from './component/Content/Messages/Messages'
-import Article from './component/Article/Article'
 import Profile from './component/Content/Profile/Profile'
 import MenuConteiner from './component/Menu/MenuConteiner'
 import { connect } from 'react-redux'
@@ -25,7 +23,9 @@ const App = React.memo((props) => {
         <Preloader loading={loan} />
     ) : (
         <div className='App'>
-            <MenuConteiner />
+            <div className='menu'>
+                <MenuConteiner />
+            </div>
             <div className='cont'>
                 <Switch>
                     <Route path='/profile/:id?' render={() => <Profile />} />
@@ -49,7 +49,6 @@ const App = React.memo((props) => {
                     <Redirect from='/' to='/profile' />
                 </Switch>
             </div>
-            <Article />
         </div>
     )
 })
