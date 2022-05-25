@@ -1,22 +1,24 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import q from './Menu.module.css'
+import './Menu.css'
 
 const Menu = ({ log }) => {
     return (
-        <nav className={q.nav}>
+        <nav className='.nav'>
             <div>
-                <NavLink to='/profile'>{log ? 'Profile' : 'Sign IN'}</NavLink>
+                <NavLink to='/profile' className='menu__element'>
+                    {log ? 'Profile' : 'Sign IN'}
+                </NavLink>
             </div>
             <div>
-                <NavLink to='/messages'>Messages</NavLink>
+                <NavLink to='/messages' className='menu__element'>
+                    Messages
+                </NavLink>
             </div>
             <div>
-                <NavLink to='/users'>Users</NavLink>
-                <p></p>
-            </div>
-            <div>
-                <span>Settings</span>
+                <NavLink to='/users' className='menu__element'>
+                    Users
+                </NavLink>
             </div>
         </nav>
     )

@@ -1,7 +1,10 @@
 .profile {
-    height: 50vh;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 5px;
+    position: relative;
 }
 
-.style {
-    height: 50vh;
+.posts {
+    height: 100%;
 }

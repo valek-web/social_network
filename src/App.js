@@ -23,31 +23,37 @@ const App = React.memo((props) => {
         <Preloader loading={loan} />
     ) : (
         <div className='App'>
-            <div className='menu'>
-                <MenuConteiner />
-            </div>
-            <div className='cont'>
-                <Switch>
-                    <Route path='/profile/:id?' render={() => <Profile />} />
-                    <Route
-                        path='/messages:id?'
-                        render={() => (
-                            <Messages
-                                stateMessages={props.state}
-                                dispatch={props.dispatch}
-                            />
-                        )}
-                    />
-                    <Route
-                        path='/users'
-                        render={() => ReactSuspense(UsersConteiner)()}
-                    />
-                    <Route
-                        path='/login'
-                        render={() => ReactSuspense(Login)()}
-                    />
-                    <Redirect from='/' to='/profile' />
-                </Switch>
+            <div className='header'></div>
+            <div className='wrapper'>
+                <div className='menu'>
+                    <MenuConteiner />
+                </div>
+                <div className='cont'>
+                    <Switch>
+                        <Route
+                            path='/profile/:id?'
+                            render={() => <Profile />}
+                        />
+                        <Route
+                            path='/messages:id?'
+                            render={() => (
+                                <Messages
+                                    stateMessages={props.state}
+                                    dispatch={props.dispatch}
+                                />
+                            )}
+                        />
+                        <Route
+                            path='/users'
+                            render={() => ReactSuspense(UsersConteiner)()}
+                        />
+                        <Route
+                            path='/login'
+                            render={() => ReactSuspense(Login)()}
+                        />
+                        <Redirect from='/' to='/profile' />
+                    </Switch>
+                </div>
             </div>
         </div>
     )

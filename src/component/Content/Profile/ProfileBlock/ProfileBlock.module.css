@@ -1,10 +1,9 @@
 .flex_blog {
     display: flex;
-    width: 95%;
     margin: 0 auto;
     justify-content: space-between;
     padding: 15px;
-    border-bottom: solid rgb(124, 124, 124) 1px;
+    position: relative;
 }
 
 .ava {
@@ -23,6 +22,7 @@
 
 .button {
     display: block;
-    margin: 10px;
-    float: right;
+    position: absolute;
+    top: 30px;
+    right: 30px;
 }

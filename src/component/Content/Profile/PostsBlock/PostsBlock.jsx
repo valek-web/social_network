@@ -15,7 +15,7 @@ const PostsBlock = (props) => {
         )
     })
     return (
-        <div>
+        <div className={q.wrapper}>
             {!props.error ? '' : <div className={q.error}>{props.error}</div>}
             <form onSubmit={props.handleSubmit} className={q.box}>
                 <div className={q.input}>

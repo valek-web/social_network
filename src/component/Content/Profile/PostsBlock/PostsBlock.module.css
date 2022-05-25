@@ -1,10 +1,8 @@
 .flex_blog {
     display: flex;
-    width: 95%;
     margin: 0 auto;
     justify-content: space-between;
     padding: 15px;
-    border-bottom: solid rgb(124, 124, 124) 1px;
 }
 
 .ava {
@@ -17,6 +15,14 @@
     border-radius: 15px;
 }
 
+.wrapper {
+    height: 100%;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
 .info {
     width: 73%;
 }
@@ -25,7 +31,6 @@
     height: 10vh;
     display: flex;
     justify-content: space-around;
-    padding: 7px;
 }
 
 .textarea {
@@ -38,7 +43,7 @@
 .input {
     z-index: 2;
     width: 80%;
-    height: 90px;
+    height: 100%;
 }
 
 .buttons {
@@ -51,8 +56,7 @@
 }
 
 .scrool {
-    height: 40vh;
-    overflow-y: auto;
+    height: 100%;
 }
 
 .error {
