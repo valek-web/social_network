@@ -1,8 +1,8 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import w from './User.module.css'
+import style from './User.module.css'
 
-const User = React.memo(props => {
+const User = React.memo((props) => {
     let followUn = props.onFollow ? 'Unfollow' : 'Follow'
 
     let followUnfollo = () => {
@@ -14,8 +14,8 @@ const User = React.memo(props => {
     }
 
     return (
-        <div className={w.box}>
-            <div className={w.ava}>
+        <div className={style.user}>
+            <div className={style.user__ava}>
                 <NavLink to={'/profile/' + props.onID}>
                     <img
                         src={
@@ -27,12 +27,13 @@ const User = React.memo(props => {
                     />
                 </NavLink>
             </div>
-            <div className={w.info}>
+            <div className={style.user__info}>
                 <h3>{props.onName}</h3>
                 <p>{!props.onStatus ? 'No status!' : props.onStatus}</p>
                 <button
-                    disabled={props.following.some(id => id === props.onID)}
+                    disabled={props.following.some((id) => id === props.onID)}
                     onClick={followUnfollo}
+                    className='button'
                 >
                     {followUn}
                 </button>

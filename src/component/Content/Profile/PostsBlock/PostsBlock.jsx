@@ -1,13 +1,13 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import Posts from './Post/Post'
-import q from './PostsBlock.module.css'
+import style from './PostsBlock.module.css'
 
 const PostsBlock = (props) => {
     let mapPosts = props.posts.map((i) => {
         return (
             <Posts
-                onImgAva={props.imgAva}
+                onProfile={props.onProfile}
                 text={i.message}
                 key={i.id}
                 like={i.like}
@@ -15,12 +15,16 @@ const PostsBlock = (props) => {
         )
     })
     return (
-        <div className={q.wrapper}>
-            {!props.error ? '' : <div className={q.error}>{props.error}</div>}
-            <form onSubmit={props.handleSubmit} className={q.box}>
-                <div className={q.input}>
+        <>
+            {!props.error ? (
+                ''
+            ) : (
+                <div className={style.posts__error}>{props.error}</div>
+            )}
+            <form onSubmit={props.handleSubmit} className={style.posts__form}>
+                <div className={style.posts__input}>
                     <Field
-                        className={q.textarea}
+                        className={style.posts__textarea}
                         value={props.newPostTexts}
                         placeholder='New post!'
                         component='textarea'
@@ -28,12 +32,10 @@ const PostsBlock = (props) => {
                         onChange={props.deleteErrorChangeTC}
                     />
                 </div>
-                <div className={q.buttons}>
-                    <button>Add post</button>
-                </div>
+                <button className='button'>Add post</button>
             </form>
-            <div className={q.scrool}>{mapPosts}</div>
-        </div>
+            <div className={style.scrool}>{mapPosts}</div>
+        </>
     )
 }
 

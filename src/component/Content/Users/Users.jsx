@@ -1,8 +1,8 @@
 import React from 'react'
 import User from './User/User'
-import s from './Users.module.css'
+import style from './Users.module.css'
 
-const Users = React.memo(props => {
+const Users = React.memo((props) => {
     let onMaxPage = () => {
         return Math.ceil(props.onTotalUsersCount / props.onPageSize)
     }
@@ -11,7 +11,7 @@ const Users = React.memo(props => {
         props.onClickBtn(bool, onMaxPages)
     }
 
-    let mapUser = props.users.map(i => {
+    let mapUser = props.users.map((i) => {
         return (
             <User
                 onName={i.name}
@@ -31,11 +31,15 @@ const Users = React.memo(props => {
 
     let current = props.onCurrentPage
     return (
-        <div>
-            <div className={s.countPage}>
-                <div className={s.box_button}>
+        <div className={style.user}>
+            <div className={style.user__countPage}>
+                <div className={style.user__button}>
                     <div
-                        className={current === 1 ? s.block : s.btn_next}
+                        className={
+                            current === 1
+                                ? style.user__btn_close
+                                : style.user__btn_next
+                        }
                         onClick={
                             current !== 1 ? () => clickBtnPage(false) : null
                         }
@@ -45,7 +49,9 @@ const Users = React.memo(props => {
                     <div>{current}</div>
                     <div
                         className={
-                            current === onMaxPage() ? s.block : s.btn_next
+                            current === onMaxPage()
+                                ? style.user__btn_close
+                                : style.user__btn_next
                         }
                         onClick={
                             current !== onMaxPage()
@@ -57,7 +63,7 @@ const Users = React.memo(props => {
                     </div>
                 </div>
             </div>
-            <div className={s.box}>{mapUser}</div>
+            <div className={style.user__box}>{mapUser}</div>
         </div>
     )
 })

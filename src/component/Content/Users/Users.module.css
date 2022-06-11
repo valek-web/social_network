@@ -1,29 +1,28 @@
-.box {
-    height: 95vh;
-    overflow-y: hidden;
+.user__box {
+    height: 100%;
 }
 
-.countPage {
+.user__box button {
+    margin-top: 7px;
+}
+
+.user__countPage {
     height: 5vh;
     text-align: center;
 }
 
-.box_button {
+.user__button {
     width: 30%;
     display: flex;
     margin: 0 auto;
     justify-content: space-around;
 }
 
-.block {
+.user__btn_close {
     color: rgb(150, 149, 149);
     cursor: not-allowed;
 }
 
-.btn_next {
+.user__btn_next {
     cursor: pointer;
-}
-
-.input_current_page {
-    text-align: center;
 }

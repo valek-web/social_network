@@ -7,7 +7,6 @@ const PostsConteiner = React.memo((props) => {
     const addTextPost = (valueNewPost) => {
         props.addTextPostTC(valueNewPost.textPost)
     }
-
     return <PostsBlock onSubmit={addTextPost} {...props} />
 })
 
@@ -16,6 +15,7 @@ let mapStateToProps = (state) => {
         newPostTexts: state.profilePage.newPostText,
         posts: state.profilePage.post,
         imgAva: state.differentPage.imgAva,
+        onProfile: state.profilePage.profile,
     }
 }
 

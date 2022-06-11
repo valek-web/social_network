@@ -1,10 +1,23 @@
 import React from 'react'
-import s from './preloader.module.css'
+import style from './preloader.module.css'
 
-const Preloader = props => {
+const Preloader = (props) => {
     return (
-        <div className={s.box_img}>
-            <img src={props.loading} alt='#' className={s.img} />
+        <div className={style.box}>
+            <div className={style.lds_spinner}>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </div>
     )
 }

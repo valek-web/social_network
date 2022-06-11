@@ -11,11 +11,6 @@ const Menu = ({ log }) => {
                 </NavLink>
             </div>
             <div>
-                <NavLink to='/messages' className='menu__element'>
-                    Messages
-                </NavLink>
-            </div>
-            <div>
                 <NavLink to='/users' className='menu__element'>
                     Users
                 </NavLink>

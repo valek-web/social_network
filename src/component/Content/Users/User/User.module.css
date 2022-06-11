@@ -1,26 +1,19 @@
-.box {
+.user {
     display: flex;
-    margin: 7px 15px;
-    background-color: rgba(0, 0, 255, 0.356);
+    margin: 15px;
+    background-color: #fff;
     border-radius: 15px;
+    padding: 15px;
 }
 
-.ava {
+.user__ava {
     width: 150px;
-    height: 30vh;
+    height: 30%;
 }
 
-.ava img {
+.user__ava img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 15px 0 0 15px;
-}
-
-.info {
-    margin: 7px;
-}
-
-.items {
-    list-style-type: none;
 }

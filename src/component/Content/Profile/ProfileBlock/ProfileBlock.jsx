@@ -1,15 +1,15 @@
 import React from 'react'
-import w from './ProfileBlock.module.css'
+import style from './ProfileBlock.module.css'
 import Status from './Status/Status'
 
-const ProfileBlock = React.memo(props => {
+const ProfileBlock = React.memo((props) => {
     return (
         <>
-            <button onClick={props.logOutTC} className={w.button}>
+            <button onClick={props.logOutTC} className='button'>
                 log out
             </button>
-            <div className={w.flex_blog}>
-                <div className={w.ava}>
+            <div className={style.profile__flex_blog}>
+                <div className={style.profile__ava}>
                     <img
                         src={
                             !props.onProfile.photos.large
@@ -19,7 +19,7 @@ const ProfileBlock = React.memo(props => {
                         alt='#'
                     />
                 </div>
-                <div className={w.info}>
+                <div className={style.profile__info}>
                     <h2>{props.onProfile.fullName}</h2>
                     <p>
                         {!props.onProfile.aboutMe

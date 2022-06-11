@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import './App.css'
-import Messages from './component/Content/Messages/Messages'
-import Profile from './component/Content/Profile/Profile'
 import MenuConteiner from './component/Menu/MenuConteiner'
 import { connect } from 'react-redux'
 import { thunkCreatorDifferent } from './redux/reducer/different_reducer'
@@ -10,6 +8,7 @@ import { withRouter } from 'react-router'
 import Preloader from './component/different/preloader/preloader'
 import loan from './img/load_book.gif'
 import { ReactSuspense } from './component/hoc/Suspense'
+import ProfileContainer from './component/Content/Profile/ProfileContainer'
 const Login = React.lazy(() => import('./component/Login/Login'))
 const UsersConteiner = React.lazy(() =>
     import('./component/Content/Users/UsersConteiner')
@@ -23,25 +22,16 @@ const App = React.memo((props) => {
         <Preloader loading={loan} />
     ) : (
         <div className='App'>
-            <div className='header'></div>
-            <div className='wrapper'>
-                <div className='menu'>
+            <header className='header'></header>
+            <main className='page'>
+                <div className='page__menu'>
                     <MenuConteiner />
                 </div>
-                <div className='cont'>
+                <div className='page__content'>
                     <Switch>
                         <Route
                             path='/profile/:id?'
-                            render={() => <Profile />}
-                        />
-                        <Route
-                            path='/messages:id?'
-                            render={() => (
-                                <Messages
-                                    stateMessages={props.state}
-                                    dispatch={props.dispatch}
-                                />
-                            )}
+                            render={() => <ProfileContainer />}
                         />
                         <Route
                             path='/users'
@@ -54,7 +44,7 @@ const App = React.memo((props) => {
                         <Redirect from='/' to='/profile' />
                     </Switch>
                 </div>
-            </div>
+            </main>
         </div>
     )
 })
