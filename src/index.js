@@ -4,19 +4,19 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
 import store from './redux/redux_store'
-import { BrowserRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
 ReactDOM.render(
     <React.StrictMode>
-        <BrowserRouter>
+        <HashRouter>
             <Provider store={store}>
                 <App
                     state={store.getState()}
                     dispatch={store.dispatch.bind(store)}
                 />
             </Provider>
-        </BrowserRouter>
+        </HashRouter>
     </React.StrictMode>,
     document.getElementById('root')
 )
