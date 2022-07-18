@@ -6,6 +6,12 @@ const ADD_POST = 'social-network/profile/ADD_POST'
 const SET_PROFILE = 'social-network/profile/SET_PROFILE'
 const GET_STATUS = 'social-network/profile/GET_STATUS'
 
+type postType = {
+    message: string,
+    like: number,
+    id: number
+}
+
 let initialState = {
     profile: null,
     boolDate: false,
@@ -14,10 +20,14 @@ let initialState = {
         { message: "I'm learn Java!", like: 5, id: 1 },
         { message: "I'm learn Python!", like: 33, id: 2 },
         { message: 'I want programmes!', like: 15, id: 3 },
-    ],
+    ] as Array<postType>,
+    newPostText: '' as string,
+    status: '' as string
 }
 
-export const profile_reducer = (state = initialState, action) => {
+type initialStateType = typeof initialState
+
+export const profile_reducer = (state = initialState, action: any): initialStateType => {
     switch (action.type) {
         case ADD_POST: {
             return {
@@ -27,7 +37,7 @@ export const profile_reducer = (state = initialState, action) => {
                     {
                         message: action.text,
                         like: 0,
-                        id: { ...(state.post[state.post.length - 1].id + 1) },
+                        id: state.post[state.post.length - 1].id + 1,
                     },
                 ],
                 newPostText: '',
@@ -53,15 +63,25 @@ export const profile_reducer = (state = initialState, action) => {
 
 // action Creator
 
+type addPostType = {
+    type: typeof ADD_POST,
+    text: string
+}
+
+type getProfileStatusType = {
+    type: typeof GET_STATUS,
+    date: string
+}
+
 let actionCreator = {
-    addPostAC: text => {
+    addPostAC: (text: string): addPostType => {
         return { type: ADD_POST, text }
     },
-    setProfileInfoAC: date => {
+    setProfileInfoAC: (date: any) => {
         return { type: SET_PROFILE, date }
     },
 
-    getProfileStatusAC: date => {
+    getProfileStatusAC: (date: string): getProfileStatusType => {
         return { type: GET_STATUS, date }
     },
 }
@@ -69,10 +89,10 @@ let actionCreator = {
 // thunk creator
 
 export let thunkCreatorProfile = {
-    getProfileInfoTC: (urlID, myID) => async dispatch => {
+    getProfileInfoTC: (urlID: any, myID: any) => async (dispatch: any) => {
         if (!urlID && !myID) {
             let respons = await globalAPI.setProfileMe()
-            dispatch(actionCreator.actionCreatorDifferent.setDateAC(respons))
+            // dispatch(actionCreator.actionCreatorDifferent.setDateAC(respons))
             let data = await globalAPI.profileInfo(respons.data.id)
             dispatch(actionCreator.setProfileInfoAC(data))
         } else {
@@ -80,7 +100,7 @@ export let thunkCreatorProfile = {
             dispatch(actionCreator.setProfileInfoAC(data))
         }
     },
-    getStatusTC: (urlID, myID) => async dispatch => {
+    getStatusTC: (urlID: any, myID: any) => async (dispatch: any) => {
         if (!urlID && !myID) {
             let respons = await globalAPI.setProfileMe()
             dispatch(actionCreatorDifferent.setDateAC(respons))
@@ -95,7 +115,7 @@ export let thunkCreatorProfile = {
             }
         }
     },
-    setStatusTC: newStatus => async dispatch => {
+    setStatusTC: (newStatus: any) => async (dispatch: any) => {
         if (!!newStatus) {
             let date = await globalAPI.setStatus(newStatus)
             if (date.data.resultCode === 0) {
@@ -103,7 +123,7 @@ export let thunkCreatorProfile = {
             }
         }
     },
-    addTextPostTC: textPost => dispatch => {
+    addTextPostTC: (textPost: any) => (dispatch: any) => {
         if (!textPost) {
             dispatch(
                 stopSubmit('post', { _error: 'Unable to create empty post' })
@@ -113,7 +133,7 @@ export let thunkCreatorProfile = {
         }
     },
 
-    deleteErrorChangeTC: () => dispatch => {
+    deleteErrorChangeTC: () => (dispatch: any) => {
         dispatch(stopSubmit('post', { _error: null }))
     },
 }
