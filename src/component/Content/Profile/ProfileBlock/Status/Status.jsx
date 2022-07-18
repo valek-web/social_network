@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 
-const Status = React.memo(props => {
+const Status = React.memo((props) => {
     const [editMode, setEditMode] = useState(false)
     const [status, setStatus] = useState(props.status)
-    
+
     useEffect(() => {
         setStatus(props.status)
     }, [props.status])
 
-    const onStatusChange = e => {
+    const onStatusChange = (e) => {
         if (e.currentTarget.value !== status) {
             setStatus(e.currentTarget.value)
         }

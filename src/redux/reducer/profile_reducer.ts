@@ -73,11 +73,15 @@ type getProfileStatusType = {
     date: string
 }
 
+type setProfileInfoType = {
+    type: typeof SET_PROFILE, date: any
+}
+
 let actionCreator = {
     addPostAC: (text: string): addPostType => {
         return { type: ADD_POST, text }
     },
-    setProfileInfoAC: (date: any) => {
+    setProfileInfoAC: (date: any): setProfileInfoType => {
         return { type: SET_PROFILE, date }
     },
 
@@ -92,7 +96,7 @@ export let thunkCreatorProfile = {
     getProfileInfoTC: (urlID: any, myID: any) => async (dispatch: any) => {
         if (!urlID && !myID) {
             let respons = await globalAPI.setProfileMe()
-            // dispatch(actionCreator.actionCreatorDifferent.setDateAC(respons))
+            dispatch(actionCreatorDifferent.setDateAC(respons))
             let data = await globalAPI.profileInfo(respons.data.id)
             dispatch(actionCreator.setProfileInfoAC(data))
         } else {
