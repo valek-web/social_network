@@ -13,8 +13,10 @@ let reducers = combineReducers({
     form: formReducer,
 })
 
-let store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)))
+type reducerType = typeof reducers
+export type stateType = ReturnType<reducerType>
 
-window.str = store
+
+let store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)))
 
 export default store

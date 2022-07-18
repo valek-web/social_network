@@ -1,12 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { stateType } from '../../redux/redux_store'
 import Menu from './Menu'
 
-const MenuConteinerAPI = React.memo((props) => {
+type propsType = {
+    log: boolean
+}
+
+const MenuConteinerAPI:React.FC<propsType> = React.memo((props) => {
     return <Menu {...props} />
 })
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state: stateType) => {
     return {
         log: state.differentPage.login,
     }

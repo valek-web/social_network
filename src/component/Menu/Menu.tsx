@@ -2,7 +2,11 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import './Menu.css'
 
-const Menu = ({ log }) => {
+type propsType = {
+    log: boolean
+}
+
+const Menu:React.FC<propsType> = ({ log }) => {
     return (
         <nav className='.nav'>
             <div>

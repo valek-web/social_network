@@ -2,7 +2,16 @@ import React from 'react'
 import style from './ProfileBlock.module.css'
 import Status from './Status/Status'
 
-const ProfileBlock = React.memo((props) => {
+type propsType ={
+    status: string,
+    onProfile: any
+
+    logOutTC: () => void,
+    setStatusTC: () => void,
+}
+
+const ProfileBlock:React.FC<propsType> = React.memo((props) => {
+    debugger
     return (
         <>
             <button onClick={props.logOutTC} className='button'>

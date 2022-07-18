@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react'
 
-const Status = React.memo((props) => {
+type propsType = {
+    status: string,
+    onSetStatusTC: (status: string) => void
+}
+
+const Status: React.FC<propsType> = React.memo((props) => {
     const [editMode, setEditMode] = useState(false)
     const [status, setStatus] = useState(props.status)
 
@@ -8,7 +13,7 @@ const Status = React.memo((props) => {
         setStatus(props.status)
     }, [props.status])
 
-    const onStatusChange = (e) => {
+    const onStatusChange = (e: any) => {
         if (e.currentTarget.value !== status) {
             setStatus(e.currentTarget.value)
         }

@@ -2,10 +2,16 @@ import React from 'react'
 import PostsBlockConteiner from './PostsBlock/PostsBlockConteiner'
 import ProfileBlockContainer from './ProfileBlock/ProfileBlockContainer'
 import style from './Profile.module.css'
-import Preloader from './../../different/preloader/preloader'
+import Preloader from '../../different/preloader/preloader'
 import load from './../../../img/load_book.gif'
 
-const Profile = React.memo((props) => {
+type propsType = {
+    boolProfile: boolean,
+    status: string
+}
+
+const Profile: React.FC<propsType> = React.memo((props) => {
+    debugger
     return !props.boolProfile || !props.status ? (
         <>{<Preloader loading={load} />}</>
     ) : (
