@@ -1,5 +1,7 @@
+import { stateType } from './../redux_store';
 import { globalAPI } from '../../api/api'
 import { stopSubmit } from 'redux-form'
+import { ThunkAction } from 'redux-thunk'
 
 const LOADER = 'social-network/different/LOADER'
 const SET_MY_DATE = 'social-network/different/SET_MY_DATE'
@@ -27,7 +29,7 @@ let initialState = {
 
 type initialStateType = typeof initialState
 
-export const different_reducer = (state = initialState, action: any): initialStateType => {
+export const different_reducer = (state = initialState, action: actionTypy): initialStateType => {
     switch (action.type) {
         case LOADER:
             return {
@@ -70,9 +72,15 @@ export const different_reducer = (state = initialState, action: any): initialSta
 }
 
 //Action Creator
+type actionTypy = setLoaderType |
+    setDateType |
+    deleteDateType |
+    inizializationType |
+    capthaUrlType |
+    deleteCaptchaUrlType
 
 type setLoaderType = {
-    type: typeof LOADER
+    type: typeof LOADER,
     newBool: boolean
 }
 type setDateType = {
@@ -136,14 +144,24 @@ export let actionCreatorDifferent = {
 
 // ThunkCreator
 
-export let thunkCreatorDifferent = {
-    setProfileInfoMeTC: () => async (dispatch: any) => {
+type thunkCreatorDifferentType = {
+    setProfileInfoMeTC: () => void | any
+    setLoginTC: (email: string, password: string, rememberMe: any, captcha: any) => void
+    logOutTC: () => void
+    inizializationTC: () => void
+    getCaptchaUrl: () => void | any
+}
+
+type thunkDifferentType = ThunkAction<Promise<void>, stateType, unknown, actionTypy>
+
+export let thunkCreatorDifferent: thunkCreatorDifferentType = {
+    setProfileInfoMeTC: (): thunkDifferentType => async (dispatch) => {
         return await globalAPI.setProfileMe().then((date: any) => {
             dispatch(actionCreatorDifferent.setDateAC(date))
         })
     },
 
-    setLoginTC: (email: string, password: string, rememberMe: any, captcha: any) => async (dispatch: any) => {
+    setLoginTC: (email: string, password: string, rememberMe: any, captcha: any): thunkDifferentType => async (dispatch) => {
         let date = await globalAPI.login(email, password, rememberMe, captcha)
         if (date.resultCode === 0) {
             globalAPI.setProfileMe().then((date: any) => {
@@ -158,16 +176,16 @@ export let thunkCreatorDifferent = {
         }
     },
 
-    logOutTC: () => async (dispatch: any) => {
+    logOutTC: (): thunkDifferentType => async (dispatch) => {
         await globalAPI.logOut()
         dispatch(actionCreatorDifferent.deleteDateAC())
     },
 
-    inizializationTC: () => async (dispatch: any) => {
+    inizializationTC: (): thunkDifferentType => async (dispatch) => {
         await dispatch(thunkCreatorDifferent.setProfileInfoMeTC())
         dispatch(actionCreatorDifferent.inizializationAC())
     },
-    getCaptchaUrl: () => async (dispatch: any) => {
+    getCaptchaUrl: (): thunkDifferentType => async (dispatch) => {
         const respons = await globalAPI.getCaptchaUrl()
         const urlCaptcha = respons.data.url
         dispatch(actionCreatorDifferent.capthaUrlAC(urlCaptcha))

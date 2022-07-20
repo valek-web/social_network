@@ -16,11 +16,12 @@ const UsersConteiner = React.lazy(() =>
 )
 
 const App = React.memo((props) => {
+    debugger
     useEffect(() => {
         props.inizializationTC()
-    }, [])
+    }, [props.inizialize])
     return !props.inizialize ? (
-        <Preloader loading={loan} />
+        <Preloader />
     ) : (
         <div className='App'>
             <header className='header'></header>

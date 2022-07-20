@@ -7,24 +7,19 @@ import ProfileBlock from './ProfileBlock'
 import { withRouter } from 'react-router-dom'
 import { AuthRedirect } from '../../../hoc/AuthRedirect'
 import { compose } from 'redux'
-import { stateType } from '../../../../redux/redux_store'
 
-type propsType = {
-    status: string,
-    onProfile: any,
-
-    getStatusTC: () => void,
-    logOutTC: () => void
-}
-
-const ProfileBlockConteiner: React.FC<propsType> = React.memo((props) => {
-    return <ProfileBlock status={props.status}
-        logOutTC={props.logOutTC}
-        onProfile={props.onProfile}
-        setStatusTC={props.getStatusTC} />
+const ProfileBlockConteiner = React.memo((props) => {
+    return (
+        <ProfileBlock
+            status={props.status}
+            logOutTC={props.logOutTC}
+            onProfile={props.onProfile}
+            setStatusTC={props.getStatusTC}
+        />
+    )
 })
 
-let mapStateToProps = (state: stateType) => {
+let mapStateToProps = (state) => {
     return {
         status: state.profilePage.status,
         onProfile: state.profilePage.profile,

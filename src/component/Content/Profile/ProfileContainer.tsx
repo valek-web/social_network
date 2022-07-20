@@ -28,6 +28,7 @@ type ownPropsType = {
 type propsType = mapStateToPropsType & mapDispatchToPropsType & ownPropsType
 
 const ProfileContainer: React.FC<propsType> = React.memo((props) => {
+    debugger
     useEffect(() => {
         props.getProfileInfoTC(props.match.params.id, props.onMyID)
         props.getStatusTC(props.match.params.id, props.onMyID)
